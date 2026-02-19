@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التقسيط</title>
+    <html lang="ar" dir="rtl">
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+  <style>
+    body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  direction: rtl;
+  text-align: right;
+  color: #333;
+}
+body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #222;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      direction: rtl;
+      text-align: right;
+    }
+.hero-text {
+  flex: 1 1 400px;
+  text-align: right;
+}
+.hero-text h2 {
+  color: #0066ff;
+  margin-bottom: 10px;
+}
+.hero-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.hero-img {
+  flex: 0 0 150px;
+}
+.hero-img img {
+  width: 100%;
+  max-width: 150px;
+  display: block;
+}
+    .dealers {
+      padding: 5px 2px;
+      text-align: center;
+    }
+    .dealers h2 {
+      font-size: 2em;
+      margin-bottom: 3px;
+      color: #004080;
+    }
+    .dealer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .dealer-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+    .dealer-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    .dealer-box img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+    .dealer-box h3 {
+      color: #004080;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+    .dealer-box p {
+      font-size: 0.95em;
+      color: #555;
+    }
+    .why-us {
+      background: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .why-us h2 {
+      color: #004080;
+      margin-bottom: 20px;
+    }
+    .why-us ul {
+      list-style: none;
+      display: inline-block;
+      text-align: left;
+    }
+    .why-us li {
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+    .cta {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #004080;
+      color: #fff;
+    }
+    .cta h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    .cta p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+    .cta .btn {
+      background-color: #fff;
+      color: #004080;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .cta .btn:hover {
+      background-color: #003060;
+      color: #fff;
+    }
+
+#details {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f9fafc, #eef2f7);
+}
+
+.button {
+ display: inline-block;
+ border-radius: 7px;
+ border: none;
+ background: #576070;
+ color: white;
+ text-align: center;
+ font-size: 13px;
+ box-shadow: 0px 14px 13px -11px #525353;
+ width: 10em;
+ padding: 1em;
+ transition: all 0.4s;
+ cursor: pointer;
+}
+
+.button span {
+ cursor: pointer;
+ display: inline-block;
+ position: relative;
+ transition: 0.4s;
+}
+
+.button span:after {
+ content: 'مجاناً ';
+ position: absolute;
+ opacity: 0;
+ top: 0;
+ right: -20px;
+ transition: 0.7s;
+}
+
+.button:hover span {
+ padding-right: 3.55em;
+}
+
+.button:hover span:after {
+ opacity: 4;
+ right: 0;
+}
+
+@media (max-width: 768px) {
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-text h2 {
+    font-size: 1.4rem;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+
+  .hero-img img {
+    max-width: 120px;
+    margin: 0 auto;
+  }
+
+  .dealer-grid {
+    gap: 15px;
+  }
+
+  .dealer-box {
+    padding: 15px;
+  }
+
+  .dealer-box img {
+    width: 100px;
+  }
+
+  .dealer-box h3 {
+    font-size: 1rem;
+  }
+
+  .dealer-box p {
+    font-size: 0.85rem;
+  }
+
+  .button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h2 {
+    font-size: 1.2rem;
+  }
+
+  .hero-text p {
+    font-size: 0.85rem;
+  }
+
+  .dealer-box img {
+    width: 90px;
+  }
+}
+
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 350px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  z-index: 2000;
+}
+.cart.active {
+  right: 0;
+}
+
+
+@media (max-width: 768px) {
+
+  .dealer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dealer-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    text-align: right;
+  }
+
+  .dealer-box img {
+    width: 60px;
+    flex-shrink: 0;
+  }
+
+  .dealer-box h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .dealer-box p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .dealer-box a {
+    margin-top: auto;
+  }
+
+  .dealer-box .button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+  }
+}
+.hero {
+  background: #f5f8ff;
+  padding: 60px 20px;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+  text-align: right;
+}
+
+.hero-text h2 {
+  font-size: 2.2rem;
+  color: #0066ff;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.hero-text p {
+  font-size: 1.15rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* IMAGE */
+.hero-img {
+  flex: 0 0 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.hero-img img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .hero-text h2 {
+    font-size: 1.8rem;
+  }
+  .hero-text p {
+    font-size: 1.05rem;
+  }
+  .hero-img {
+    flex: 0 0 150px;
+  }
+  .hero-img img {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+
+  .hero-img {
+    margin-top: 20px;
+    flex: 0 0 auto;
+  }
+
+  .hero-img img {
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero-text h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .hero-img img {
+    max-width: 100px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+   <div class="cart">
+        <div class="top_cart">
+            <h3>Cart Items : <span class="Count_item_cart">0</span></h3>
+            <span onclick="open_close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+        </div>
+
+
+        <div class="items_in_cart" id="cart_items">
+        </div>
+        <div class="bottom_cart">
+            <div class="total">
+                <p>الإجمالي</p>
+                <p class="price_cart_toral">$0</p>
+            </div>
+
+            <div class="button_cart">
+                <a href="checkout.html" class="btn_cart btn">الدفع</a>
+                <a href="index.html">
+                    <span onclick="open_close_cart()" class="btn_cart trans_bg btn">تسوق اكثر</span>
+                </a>            </div>
+        </div>
+
+    </div>
+  <header>
+     <div class="top_header">
+            <div class="container">
+                <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
+
+                <div class="header_icons">
+                    <div class="icon">
+                        <a href="#">
+                            <i class="fa-regular fa-heart"></i>
+                            <span class="count count_favourite">0</span>
+                        </a>
+                    </div>
+
+                    <div onclick="open_close_cart()" class="icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="count count_item_header">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bottom_header">
+            <div class="container">
+                <nav class="nav">
+
+                    <span onclick="open_Menu()" class="open_menu"><i class="fa-solid fa-bars"></i></span>
+                    <div class="category_nav">
+
+                        <div onclick="Open_Categ_list()" class="category_btn">
+                            <i class="fa-solid fa-bars" ></i>
+                           &nbsp; 
+                           <p style="font: large;">جميع الأقسام</p>
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div onclick="scrollToSections()" class="category_nav_list">
+                            <a href="#" style="font-size: 12px;color: red;">اقوي 10 عروض</a>
+                            <a href="Home_Appliances.html" style=" font: 1em sans-serif;font-size: 12px; padding: -4px;">ثلاجات</a>
+                            <a href="Washing_machines.html" style=" font: 1em sans-serif;font-size: 12px;">غسالات ملابس</a>
+                            <a href="washing_dish.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px">غسالات أطباق</a>
+                            <a href="gas.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;">بوتاجازات</a>
+                            <div class="category_item has-submenu">
+  <a href="Home_SmallAppliances.html" class="main-link" style="color: darkblue;font-size: 12px;">
+    أجهزة منزلية صغيرة
+  </a>
+
+  <div class="submenu">
+<a href="Home_SmallAppliances.html?filter=heater">دفايات</a>
+<a href="Home_SmallAppliances.html?filter=shafat">شفاطات</a>
+<a href="Home_SmallAppliances.html?filter=small_"> مكانس كهربائية</a>
+<a href="Home_SmallAppliances.html?filter=colder">مبردات مياه</a>
+<a href="Home_SmallAppliances.html?filter=iron">مكواة كهربائية</a>
+  </div>
+</div>
+<br>
+<div class="category_item has-submenu">
+  <a href="kitchen.html" class="main-link" style="color: darkblue;font-size: 12px;" >
+    أجهزة مطبخ
+  </a>
+
+  <div class="submenu">
+<a href="kitchen.html?filter=mixers">خلاطات كهربائية</a>
+<a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
+<a href="kitchen.html?filter=rackets"> مضارب كهربائية</a>
+<a href="kitchen.html?filter=kettles"> غلايات كهربائية</a>
+<a href="kitchen.html?filter=blender">  هاند بلندر</a>
+<a href="kitchen.html?filter=Food">محضرة طعام  </a>
+  </div>
+</div>
+                            <a href="Air Conditioners_Purifiers.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;"> مكيفات الهواء</a>
+                            <a href="freezer.html" style="font-weight: bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"> ديب فريزر</a>
+                            <a href="TVs.html" style="font-weight:bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">شاشات تلفزيون</a>
+                            <a href="fans.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">مراوح</a>   
+                            <a href="heater.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">سخانات مياه كهربائية</a>
+                            
+                        </div>
+                    </div>
+                    <ul class="nav_links">
+                        <span onclick="open_Menu()" class="close_menu"><i class="fa-regular fa-circle-xmark"></i></span>
+                        <li class="active"><a href="index.html"  style="font-weight:bolder;  font-size: small; font: 1em sans-serif; ">الرئيسية</a></li>
+                        <li><a href="About_.html" style="font-weight: bolder;  font-size: small; font: 1em sans-serif;">الوكلاء الرسميون</a></li>
+                        <li><a href="Ta.html" style="font-weight: bolder; font-size: small; font: 1em sans-serif;">نظام التقسيط</a></li>
+                        <li><a href="checkout.html" style="font-weight:bolder;  font-size: small; font: 1em sans-serif;">الدفع</a></li>
+                        <li><a href="blog.html" style="font-weight:bolder;  font-size: small; font: 1em sans-serif;">المدونة</a></li>
+                        <li><a href="contact.html" style="font-weight: bolder;  font-size: small; font: 1em sans-serif;">تواصل معنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        
+    </header>
+
+
+
+
+<!-- Mobile Bottom Nav Bar -->
+<nav class="mobile_bottom_nav">
+  <ul>
+    <li class="mobile-category">
+      <a href="javascript:void(0)" onclick="toggleMobileCategory()">
+        <i class="fa-solid fa-bars"></i>
+        <span>الأقسام</span>
+      </a>
+
+      <div class="mobile_category_list">
+        <button class="close_mobile_cat" onclick="toggleMobileCategory()" style="padding: 10px ; color: red; font-size: 15px;"> إغلاق✖</button>
+        <a href="#">اقوي 10 عروض</a>
+        <a href="Home_Appliances.html">ثلاجات</a>
+        <a href="Washing_machines.html">غسالات ملابس</a>
+        <a href="washing_dish.html">غسالات أطباق</a>
+        <a href="gas.html">بوتاجازات</a>
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة منزلية صغيرة ⌄</span>
+          <div class="mobile_submenu">
+            <a href="Home_SmallAppliances.html?filter=heater">دفايات</a>
+            <a href="Home_SmallAppliances.html?filter=shafat">شفاطات</a>
+            <a href="Home_SmallAppliances.html?filter=small_">مكانس كهربائية</a>
+            <a href="Home_SmallAppliances.html?filter=colder">مبردات مياه</a>
+            <a href="Home_SmallAppliances.html?filter=iron">مكواة كهربائية</a>
+          </div>
+        </div>
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة مطبخ ⌄</span>
+          <div class="mobile_submenu">
+            <a href="kitchen.html?filter=mixers">خلاطات كهربائية</a>
+            <a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
+            <a href="kitchen.html?filter=rackets">مضارب كهربائية</a>
+            <a href="kitchen.html?filter=kettles">غلايات كهربائية</a>
+            <a href="kitchen.html?filter=blender">هاند بلندر</a>
+            <a href="kitchen.html?filter=Food">محضرة طعام</a>
+          </div>
+        </div>
+
+        <a href="Air Conditioners_Purifiers.html">مكيفات الهواء</a>
+        <a href="freezer.html">ديب فريزر</a>
+        <a href="TVs.html">شاشات تلفزيون</a>
+        <a href="fans.html">مراوح</a>
+        <a href="heater.html">سخانات مياه كهربائية</a>
+
+      </div>
+              </li>
+        <li>
+            <a href="index.html">
+                <i class="fa-solid fa-house"></i>
+                <span>الرئيسية</span>
+            </a>
+        </li>
+        <li>
+            <a href="Ta.html">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>التقسيط</span>
+            </a>
+        </li>
+
+ <li>
+    <a href="checkout.html" class="cart-icon-mobile">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>السلة</span>
+    </a>
+</li>
+        <li>
+            <a href="contact.html">
+                <i class="fa-solid fa-phone"></i>
+                <span>تواصل</span>
+            </a>
+    </li>
+  </ul>
+</nav>
+<script>
+function toggleMobileCategory() {
+  document.querySelector('.mobile-category').classList.toggle('active');
+}
+
+function toggleMobileSub(el) {
+  const submenu = el.nextElementSibling;
+  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+}
+</script>
+
+
+
+
+    <div class="banners_4">
+        <div class="container"> 
+        </div>
+    </div>
+  </header>
+
+<main>
+<section id="details" class="details">
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h2>تقسيط بسعر الكاش</h2>
+      <p>دلوقتي تقدر تشتري من العربي وتقسط براحتك بدون فوائد، مقدم، ومصاريف إدارية</p>
+    </div>
+    <div class="hero-img">
+      <img src="img/cs.png" alt="CS Logo">
+    </div>
+  </div>
+</div>
+
+      <div class="dealer-grid">
+
+        <div class="dealer-box">
+          <img src="img/bank.png" alt="Elaraby Logo">
+          <h3 >بنك مصر</h3>
+          <p> بطاقات ائتمان فيزا مشتريات  
+     بدون أي تعقيدات</p>
+     <br>
+      <a href="https://www.banquemisr.com/ar-EG/Pages/BM-Online---Internet-and-Mobile-banking">
+        <button class="button" style="vertical-align:middle"><span style="color: #eef2f7;">تحميل</span></button>
+</a>
+        </div>
+
+        <div class="dealer-box">
+          <img src="img/mongo.png" alt="LG Logo">
+          <h3>Mongo</h3>
+          <p>
+            التقسيط حتى 12 شهر
+          </p>
+          <br>
+          <a href="https://mogo-eg.com/ar/">
+                      <button class="button" style="vertical-align:middle"><span style="color: #eef2f7;">تحميل</span></button>
+          </a>
+
+        </div>
+
+        <div class="dealer-box">
+          <img src="img/now.png" alt="Toshiba Logo">
+          <h3>Contact Now</h3>
+          <p>التقسيط حتى 12 شهر</p>
+          <br>
+          <a href="https://play.google.com/store/apps/details?id=eg.contact&hl=ar">
+          <button class="button" style="vertical-align:middle"><span style="color: #eef2f7;">تحميل</span></button>
+          </a>
+
+        </div>
+        
+        <div class="dealer-box">
+          <img src="img/valu.png" alt="Toshiba Logo">
+          <h3>ValU</h3>
+          <p>التقسيط حتى 6 شهور</p>
+          <br>
+          <a href="https://www.valu.com.eg/">
+          <button class="button" style="vertical-align:middle"><span style="color: #eef2f7;">تحميل</span></button>
+        </a>
+        </div>
+        <div class="dealer-box">
+          <img src="img/t.png" alt="Toshiba Logo">
+          <h3>TRU</h3>
+          <p>التقسيط حتى 18 شهر</p>
+          <br>
+          <a href="https://trufinance.app/ar">
+                      <button class="button" style="vertical-align:middle"><span style="color: #eef2f7;">تحميل</span></button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="why-us">
+      <h2>لماذا تشتري من التجار الرسميين؟</h2>
+      <ul>
+        <li> منتجات أصلية 100%</li>
+        <li> الضمان الرسمي وخدمة ما بعد البيع</li>
+        <li>أسعار تنافسية</li>
+        <li> التسليم على الصعيد الوطني</li>
+      </ul>
+    </section>
+
+    <section class="cta">
+      <p>استكشف مجموعتنا الواسعة من المنتجات الأصلية من التجار الرسميين الموثوقين مع ضمان الجودة والدعم.</p>
+      <a href="index.html" class="btn">عرض المنتجات</a>
+    </section>
+
+  </main>
+  
+<footer>
+        <div class="container">
+
+            <div class="big_row">
+                <img class="logo_footer" src="img/white_logo.png" alt="">
+
+                <p>الصافي سنتر للأجهزة الكهربائية و الأدوات المنزلية</p>
+
+                <div class="icons_footer">
+                     <a href="https://wa.me/012 87720314" target="_blank" class="fa-brands fa-whatsapp" style="color: #f9f9f9; font-size: larger;"></a>
+                    <a href="https://www.facebook.com/share/1Fcx9YwWTS/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/Alsafy_electrical_stores/#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@alsafy_electrical_store?_t=ZS-8zcLZWbm7Wc&_r=1" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>أحصل علي ما تريد أسرع</h4>
+
+                <div class="links">
+                            <a href="Home_Appliances.html" style=" font: 1em sans-serif;font-size: 12px; padding: -4px;"><i class="fa-solid fa-caret-right"></i>ثلاجات</a>
+                            <a href="Washing_machines.html" style=" font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>غسالات ملابس</a>
+                            <a href="washing_dish.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px"><i class="fa-solid fa-caret-right"></i>غسالات أطباق</a>
+                            <a href="gas.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>غسالات</a>
+                            <a href="Air Conditioners_Purifiers.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>مكيفات هواء</a>
+                            <a href="freezer.html" style="font-weight: bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>ديب فريزر</a>
+                            <a href="TVs.html" style="font-weight:bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>شاشات تلفزيون</a>
+                            <a href="fans.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>مراوح</a>   
+                            <a href="heater.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"><i class="fa-solid fa-caret-right"></i>سخانات</a>
+                    <a href="Home_SmallAppliances.html?filter=heater"><i class="fa-solid fa-caret-right"></i>دفايات</a>
+                    <a href="Home_SmallAppliances.html?filter=shafat"><i class="fa-solid fa-caret-right"></i>شفاطات كهربائية</a>
+                    <a href="Home_SmallAppliances.html?filter=small_"> <i class="fa-solid fa-caret-right"></i>مكانس كهربائية</a>
+                    <a href="Home_SmallAppliances.html?filter=colder"><i class="fa-solid fa-caret-right"></i>مبردات مياه</a>
+                    <a href="Home_SmallAppliances.html?filter=iron"><i class="fa-solid fa-caret-right"></i>مكواة</a>
+                    <a href="kitchen.html?filter=mixers"> <i class="fa-solid fa-caret-right"></i>خلاطات كهربائية</a>
+                    <a href="kitchen.html?filter=Kabbat"><i class="fa-solid fa-caret-right"></i>كبات و مفارم طعام</a>
+                    <a href="kitchen.html?filter=rackets"><i class="fa-solid fa-caret-right"></i>مضارب طعام</a>
+                    <a href="kitchen.html?filter=kettles"><i class="fa-solid fa-caret-right"></i>غلايات مياه</a>
+                    <a href="kitchen.html?filter=blender"><i class="fa-solid fa-caret-right"></i>هاند بلندر</a>
+                    <a href="kitchen.html?filter=Food"><i class="fa-solid fa-caret-right"></i>محضرة طعام</a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <h4>صفحات سريعه </h4>
+
+                <div class="links">
+                    <a href="index.html"><i class="fa-solid fa-caret-right"></i>الرئيسية </a>
+                    <a href="Ta.html"><i class="fa-solid fa-caret-right"></i> التقسيط</a>
+                    <a href="About_.html"><i class="fa-solid fa-caret-right"></i>التوكيل</a>
+                    <a href="checkout.html"><i class="fa-solid fa-caret-right"></i> الدفع</a>
+                    <a href="blog.html"><i class="fa-solid fa-caret-right"></i> المدونة</a>
+                    <a href="contact.html"><i class="fa-solid fa-caret-right"></i> تواصل معنا</a>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+        <div class="bottom_footer">
+            <div class="container">
+                <p>&copy; <span>Elsafy Center</span> كل الحقوق محفوظة.</p>
+
+                <div class="payment_img">
+                    <img src="img/payment_method.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="JS/swiper.js"></script>
+  <script src="JS/items_home.js"></script>
+  <script src="JS/main.js"></script>
+</body>
+</html>

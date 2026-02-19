@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Products</title>
+</head>
+<body>
+
+<button onclick="uploadData()">رفع المنتجات إلى Firebase</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// عدلي بيانات Firebase الخاصة بمشروعك هنا
+const firebaseConfig = {
+  apiKey: "AIzaSyAxFPM68HMz-xuGIKvU3anRCwLlw-NlCSk",
+  authDomain: "alsafycentercompany.firebaseapp.com",
+  projectId: "alsafycentercompany",
+  storageBucket: "alsafycentercompany.firebasestorage.app",
+  messagingSenderId: "441640095981",
+  appId: "1:441640095981:web:4453b47cbae4019bfabce4",
+  measurementId: "G-P09D6PKMP2"
+};
+
+// تهيئة Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// دالة رفع البيانات
+async function uploadData() {
+  const res = await fetch("products.json"); // قراءة ملف JSON
+  const products = await res.json();
+
+  for (let product of products) {
+    await addDoc(collection(db, "products"), product); // رفع كل منتج كـ Document
+  }
+
+  alert("تم رفع كل المنتجات إلى Firebase ✅");
+}
+
+window.uploadData = uploadData;
+</script>
+
+</body>
+</html>
