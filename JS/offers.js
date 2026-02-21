@@ -22,7 +22,6 @@ fetch('products.json')
                         <img src="${product.img}" alt="${product.name}" class="product-img">
                     </a>
                 </div>
-
                 <div class="stars">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -52,8 +51,9 @@ fetch('products.json')
 
     data.forEach(product => {
         if (product.old_price) renderProduct(swiper_items_sale, product);
- if (product.old_price) {renderProduct(swiper_mobiles, product);}
-     
+        if (product.old_price) {renderProduct(swiper_mobiles, product);}
+        if (product.catetory === "electronics") renderProduct(swiper_elctronics, product);
+        if (product.catetory === "appliances") renderProduct(swiper_appliances, product);
 });
 
     const modalHTML = `
@@ -90,3 +90,5 @@ document.addEventListener("click", (e) => {
     closeModal.onclick = () => modal.style.display = "none";
     window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 });
+
+
