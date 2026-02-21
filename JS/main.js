@@ -274,30 +274,6 @@ document.addEventListener("click", function(e) {
     btn.classList.add("active");
     btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
 });
-// document.addEventListener("click", function(e) {
-//     const btn = e.target.closest(".btn_add_cart");
-//     if (!btn) return;
-
-//     const productId = btn.dataset.id;
-
-//     fetch('products.json')
-//     .then(res => res.json())
-//     .then(data => {
-//         const product = data.find(p => p.id == productId);
-
-//         if(product){
-//             addToCart(product);
-
-//             const allBtns = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
-//             allBtns.forEach(b => {
-//                 b.classList.add("active");
-//                 b.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
-//             });
-//         }
-//     });
-// });
-
-
 function open_Menu() {
   document.querySelector('.mobile_sidebar').classList.add('active');
 }

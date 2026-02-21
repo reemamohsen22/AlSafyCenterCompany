@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Appliances</title>
+    <title>الثلاجات</title>
     <html lang="ar" dir="rtl">
 
     <link rel="icon" href="img/icon.png">
@@ -40,7 +40,6 @@
         <div class="top_header">
             <div class="container">
                 <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
-
                 <div class="header_icons">
                     <div class="icon">
                         <a href="#">
@@ -48,7 +47,6 @@
                             <span class="count count_favourite">0</span>
                         </a>
                     </div>
-
                     <div onclick="open_close_cart()" class="icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span class="count count_item_header">0</span>
@@ -60,71 +58,154 @@
             <div class="container">
                 <nav class="nav">
 
-                    <span onclick="open_Menu()" class="open_menu"><i class="fa-solid fa-bars"></i></span>
-                    <div class="category_nav">
+                  <!-- زر الهامبرغر -->
+<span onclick="open_Menu()" class="open_menu"><i class="fa-solid fa-bars"></i></span>
 
-                        <div onclick="Open_Categ_list()" class="category_btn">
-                            <i class="fa-solid fa-bars" ></i>
-                           &nbsp; 
-                           <p style="font: large;">جميع الأقسام</p>
-                            <i class="fa-solid fa-angle-down"></i>
-                        </div>
-                        <div onclick="scrollToSections()" class="category_nav_list">
-                            <a href="#" style="font-size: 12px;color: red;">اقوي 10 عروض</a>
-                            <a href="Home_Appliances.html" style=" font: 1em sans-serif;font-size: 12px; padding: -4px;">ثلاجات</a>
-                            <a href="Washing_machines.html" style=" font: 1em sans-serif;font-size: 12px;">غسالات ملابس</a>
-                            <a href="washing_dish.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px">غسالات أطباق</a>
-                            <a href="gas.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;">بوتاجازات</a>
-                            <div class="category_item has-submenu">
-  <a href="Home_SmallAppliances.html" class="main-link" style="color: darkblue;font-size: 12px;">
-    أجهزة منزلية صغيرة
-  </a>
+<!-- Sidebar الموبايل -->
+<div class="mobile_sidebar">
+  <span onclick="close_Menu()" class="close_menu"><i class="fa-regular fa-circle-xmark"></i></span>
 
-  <div class="submenu">
-<a href="Home_SmallAppliances.html?filter=heater">دفايات</a>
-<a href="Home_SmallAppliances.html?filter=shafat">شفاطات</a>
-<a href="Home_SmallAppliances.html?filter=small_"> مكانس كهربائية</a>
-<a href="Home_SmallAppliances.html?filter=colder">مبردات مياه</a>
-<a href="Home_SmallAppliances.html?filter=iron">مكواة كهربائية</a>
+  <!-- Mobile Slider: صفحات الخدمات + العروض + الدفع -->
+  <div class="mobile_only_slider">
+    <div class="service_card"><a href="About_.html">الوكلاء الرسميون</a></div>
+    <div class="service_card"><a href="Ta.html">نظام التقسيط</a></div>
+    <div class="service_card"><a href="blog.html">المدونة</a></div>
+    <div class="service_card"><a href="contact.html">تواصل معنا</a></div>
+    <div class="service_card offers_card"><a href="offers.html">العروض</a></div>
+    <div class="service_card checkout_card"><a href="checkout.html">الدفع</a></div>
   </div>
 </div>
-<br>
-<div class="category_item has-submenu">
-  <a href="kitchen.html" class="main-link" style="color: darkblue;font-size: 12px;" >
-    أجهزة مطبخ
-  </a>
 
-  <div class="submenu">
-<a href="kitchen.html?filter=mixers">خلاطات كهربائية</a>
-<a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
-<a href="kitchen.html?filter=rackets"> مضارب كهربائية</a>
-<a href="kitchen.html?filter=kettles"> غلايات كهربائية</a>
-<a href="kitchen.html?filter=blender">  هاند بلندر</a>
-<a href="kitchen.html?filter=Food">محضرة طعام  </a>
-  </div>
-</div>
-                            <a href="Air Conditioners_Purifiers.html" style="font-weight: bolder ; font: 1em sans-serif;font-size: 12px;"> مكيفات الهواء</a>
-                            <a href="freezer.html" style="font-weight: bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;"> ديب فريزر</a>
-                            <a href="TVs.html" style="font-weight:bolder ; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">شاشات تلفزيون</a>
-                            <a href="fans.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">مراوح</a>   
-                            <a href="heater.html" style="font-weight:bolder; font: 1em sans-serif;font: 1em sans-serif;font-size: 12px;">سخانات مياه كهربائية</a>
-                            
-                        </div>
-                    </div>
                     <ul class="nav_links">
-                        <span onclick="open_Menu()" class="close_menu"><i class="fa-regular fa-circle-xmark"></i></span>
+
                         <li class="active"><a href="index.html"  style="font-weight:bolder;  font-size: small; font: 1em sans-serif; ">الرئيسية</a></li>
-                        <li><a href="About_.html" style="font-weight: bolder;  font-size: small; font: 1em sans-serif;">الوكلاء الرسميون</a></li>
-                        <li><a href="Ta.html" style="font-weight: bolder; font-size: small; font: 1em sans-serif;">نظام التقسيط</a></li>
-                        <li><a href="checkout.html" style="font-weight:bolder;  font-size: small; font: 1em sans-serif;">الدفع</a></li>
-                        <li><a href="blog.html" style="font-weight:bolder;  font-size: small; font: 1em sans-serif;">المدونة</a></li>
-                        <li><a href="contact.html" style="font-weight: bolder;  font-size: small; font: 1em sans-serif;">تواصل معنا</a></li>
-                    </ul>
+
+<li class="mega_item"  class="mega_item product_link">
+  <a href="Home_SmallAppliances.html">أجهزة منزلية صغيرة</a>
+  <div class="mega_menu">
+    <div class="mega_column">
+      <h4><a href="#">أجهزة المنزل</a></h4>
+      <a href="Home_SmallAppliances.html?filter=heater">دفايات</a>
+      <a href="Home_SmallAppliances.html?filter=shafat">شفاطات</a>
+      <a href="Home_SmallAppliances.html?filter=small_">مكانس كهربائية </a>
+      <a href="Home_SmallAppliances.html?filter=iron">مكواة كهربائية</a>
+    </div>
+      <div class="mega_column">
+    <a href="#"><h4>منتجات المياه</h4></a>  
+      <a href="Home_SmallAppliances.html?filter=colder">مبردات مياه كهربائية </a>
+      <a href="Home_SmallAppliances.html?filter=filters">فلاتر مياه</a>
+      <a href="Home_SmallAppliances.html?filter=ice_tankk">كولمن مياه</a>
+    </div>
+    
+    <div class="mega_column">
+      <h4><a href="fans.html">المراوح</a></h4>
+      <a href="fans.html?filter=fan_stand">مروحة استاند</a>
+      <a href="fans.html?filter=fan_desk">مروحة مكتب</a>
+      <a href="fans.html?filter=fan_roof">مروحة سقف</a>
+      <a href="fans.html?filter=fan_wall">مروحة حائط </a>
+    </div>
+
+
+
+    <div class="mega_column">
+      <h4><a href="heater.html">سخانات مياه</a></h4>
+      <a href="heater.html?filter=heater_gas"> سخان غاز</a>
+      <a href="heater.html?filter=heater_electric">سخان  كهرباء</a>
+    </div>
+
+
+  </div>
+</li>
+<li class="mega_item"  class="mega_item product_link">
+  <a href="kitchen.html">أجهزة مطبخ</a>
+  <div class="mega_menu">
+    <div class="mega_column">
+      <a href="cooking_devices.html"><h4>أجهزة الطهي</h4></a>
+      <a href="cooking_devices.html?filter=air_fryer">قلاية هوائية</a>
+      <a href="cooking_devices.html?filter=electric_oven">فرن كهربائي</a>
+      <a href="cooking_devices.html?filter=microwave">ميكرويف</a>
+      <a href="cooking_devices.html?filter=electric_flat_heater">سخان مسطح كهربائي</a>
+      <a href="cooking_devices.html?filter=grill">شواية كهربائية</a>
+</div>
+    <div class="mega_column">
+     <a href="breakfast.html"> <h4>أجهزة الإفطار </h4></a>
+      <a href="breakfast.html?filter=juicer">عصارة حمضيات</a>
+      <a href="breakfast.html?filter=coffee">صانع القهوة</a>
+      <a href="breakfast.html?filter=yogurt">صانع الزبادي</a>
+      <a href="breakfast.html?filter=kettles">غلايات مياه</a>
+      <a href="breakfast.html?filter=Sandwiches_maker">صانع السندوتشات</a>
+      </div>
+      
+    <div class="mega_column">
+      <a href="#"><h4>أجهزة تحضير الطعام </h4></a>
+      <a href="kitchen.html?filter=mixers">خلاطات</a>
+      <a href="kitchen.html?filter=blender">هاند بلندر</a>
+      <a href="kitchen.html?filter=Food">محضرة طعام</a>
+</div>
+<div class="mega_column">
+     <a href="#"><h4>أجهزة الفرم والخلط</h4></a> 
+      <a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
+      <a href="kitchen.html?filter=rackets">مضارب كهربائية</a>
+</div>
+<div class="mega_column">
+      <a href="#"><h4>أجهزة العجن والخبز </h4></a>
+      <a href="kitchen.html?filter=stand_mixer">عجان كهربائي</a>
+    </div>
+  </div>
+</li>
+
+<li class="mega_item"  class="mega_item product_link">
+  <a href="#"> التكيفات </a>
+  <div class="mega_menu">
+    <div class="mega_column">
+      <a href="Air Conditioners_Purifiers.html">تكيفات سبليت</a>
+      </div>
+  </div>
+</li>
+
+<li class="mega_item"  class="mega_item product_link">
+  <a href="#">أجهزة التبريد</a>
+  <div class="mega_menu">
+    <div class="mega_column">
+    <h4><a href="Home_Appliances.html">الثلاجات</a></h4>
+      </div>
+       <div class="mega_column">
+      <h4><a href="freezer.html">الديب فريزر</a></h4>
+    </div>
+  </div>
+</li>
+
+<li class="mega_item" class="mega_item product_link">
+  <a href="Washing_machines.html">غسالات</a>
+  <div class="mega_menu">
+    <div class="mega_column">
+      <!-- <h4>الغسالات </h4> -->
+      <a href="Washing_machines.html">غسالات ملابس</a>
+      <a href="washing_dish.html">غسالات أطباق</a>
+    </div>
+  </div>
+</li>
+<li><a href="gas.html" class="mega_item product_link">بوتاجازات</a></li>
+<li><a href="TVs.html" class="mega_item product_link">شاشات</a></li>
+  <li class="offers_link">
+    <a href="offers.html" style="color: #b30000;">العروض</a>
+  </li>
+    <li class="checkout_link">
+    <a href="checkout.html" style="color: #004aad;">الدفع</a>
+  </li>
+  <li class="service_menu">
+    <a href="#">الخدمات ▾</a>
+    <ul class="service_dropdown">
+      <li class="service_link"><a href="About_.html">الوكلاء الرسميون</a></li>
+      <li class="service_link"><a href="Ta.html">نظام التقسيط</a></li>
+      <li class="service_link"><a href="blog.html">المدونة</a></li>
+      <li class="service_link"><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </li>
+</ul>
                 </nav>
             </div>
         </div>
-
-        
     </header>
 <!-- Mobile Bottom Nav Bar -->
 <nav class="mobile_bottom_nav">
@@ -137,41 +218,115 @@
 
       <div class="mobile_category_list">
         <button class="close_mobile_cat" onclick="toggleMobileCategory()" style="padding: 10px ; color: red; font-size: 15px;"> إغلاق✖</button>
-        <a href="#">اقوي 10 عروض</a>
-        <a href="Home_Appliances.html">ثلاجات</a>
-        <a href="Washing_machines.html">غسالات ملابس</a>
-        <a href="washing_dish.html">غسالات أطباق</a>
-        <a href="gas.html">بوتاجازات</a>
+        <a href="offers.html">كل العروض</a>
 
-        <div class="mobile_has_submenu">
+          <div class="mobile_has_submenu">
           <span onclick="toggleMobileSub(this)">أجهزة منزلية صغيرة ⌄</span>
           <div class="mobile_submenu">
             <a href="Home_SmallAppliances.html?filter=heater">دفايات</a>
             <a href="Home_SmallAppliances.html?filter=shafat">شفاطات</a>
             <a href="Home_SmallAppliances.html?filter=small_">مكانس كهربائية</a>
-            <a href="Home_SmallAppliances.html?filter=colder">مبردات مياه</a>
             <a href="Home_SmallAppliances.html?filter=iron">مكواة كهربائية</a>
           </div>
         </div>
 
         <div class="mobile_has_submenu">
-          <span onclick="toggleMobileSub(this)">أجهزة مطبخ ⌄</span>
+          <span onclick="toggleMobileSub(this)"> منتجات المياه</span>
           <div class="mobile_submenu">
-            <a href="kitchen.html?filter=mixers">خلاطات كهربائية</a>
-            <a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
-            <a href="kitchen.html?filter=rackets">مضارب كهربائية</a>
-            <a href="kitchen.html?filter=kettles">غلايات كهربائية</a>
-            <a href="kitchen.html?filter=blender">هاند بلندر</a>
-            <a href="kitchen.html?filter=Food">محضرة طعام</a>
+            <a href="Home_SmallAppliances.html?filter=colder">مبردات مياه  </a>
+            <a href="Home_SmallAppliances.html?filter=filters">فلاتر مياه</a>
+            <a href="Home_SmallAppliances.html?filter=ice_tankk">كولمن مياه</a>
           </div>
         </div>
 
-        <a href="Air Conditioners_Purifiers.html">مكيفات الهواء</a>
-        <a href="freezer.html">ديب فريزر</a>
-        <a href="TVs.html">شاشات تلفزيون</a>
-        <a href="fans.html">مراوح</a>
-        <a href="heater.html">سخانات مياه كهربائية</a>
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة الطهي ⌄</span>
+          <div class="mobile_submenu">
+      <a href="cooking_devices.html?filter=air_fryer">قلاية هوائية</a>
+      <a href="cooking_devices.html?filter=electric_oven">فرن كهربائي</a>
+      <a href="cooking_devices.html?filter=microwave">ميكرويف</a>
+      <a href="cooking_devices.html?filter=electric_flat_heater">سخان مسطح كهربائي</a>
+      <a href="cooking_devices.html?filter=grill">شواية كهربائية</a>
+        </div>
+        </div>
 
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة الإفطار ⌄</span>
+          <div class="mobile_submenu">
+      <a href="breakfast.html?filter=juicer">عصارة حمضيات</a>
+      <a href="breakfast.html?filter=coffee">صانع القهوة</a>
+      <a href="breakfast.html?filter=yogurt">صانع الزبادي</a>
+      <a href="breakfast.html?filter=kettles">غلايات مياه</a>
+      <a href="breakfast.html?filter=Sandwiches_maker">صانع السندوتشات</a>
+        </div>
+        </div>
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة تحضيرالطعام ⌄</span>
+          <div class="mobile_submenu">
+      <a href="kitchen.html?filter=mixers">خلاطات</a>
+      <a href="kitchen.html?filter=blender">هاند بلندر</a>
+      <a href="kitchen.html?filter=Food">محضرة طعام</a>
+      <a href="kitchen.html?filter=stand_mixer">عجان كهربائي</a>
+        </div>
+        </div>
+
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة الفرم و الخلط ⌄</span>
+          <div class="mobile_submenu">
+      <a href="kitchen.html?filter=Kabbat">كبّات ومفارم طعام</a>
+      <a href="kitchen.html?filter=rackets">مضارب كهربائية</a>
+        </div>
+        </div>
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">أجهزة التبريد  ⌄</span>
+          <div class="mobile_submenu">
+     <a href="Home_Appliances.html">الثلاجات</a>
+     <a href="freezer.html">الديب فريزر</a>
+        </div>
+        </div>
+
+        
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">الغسالات  ⌄</span>
+          <div class="mobile_submenu">
+    <a href="Washing_machines.html">غسالات ملابس</a>
+    <a href="washing_dish.html">غسالات أطباق</a>
+        </div>
+        </div>
+
+        <a href="gas.html">بوتاجازات</a>
+
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">التكيفات  ⌄</span>
+          <div class="mobile_submenu">
+      <a href="Air Conditioners_Purifiers.html">تكيفات سبليت</a>
+        </div>
+        </div>
+
+        <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">المراوح  ⌄</span>
+          <div class="mobile_submenu">
+      <a href="fans.html?filter=fan_stand">مروحة استاند</a>
+      <a href="fans.html?filter=fan_desk">مروحة مكتب</a>
+      <a href="fans.html?filter=fan_roof">مروحة سقف</a>
+      <a href="fans.html?filter=fan_wall">مروحة حائط </a>
+        </div>
+        </div>
+
+                <div class="mobile_has_submenu">
+          <span onclick="toggleMobileSub(this)">سخانات مياه  ⌄</span>
+          <div class="mobile_submenu">
+      <a href="heater.html?filter=heater_electric">سخان كهربائي</a>
+      <a href="heater.html?filter=heater_gas">سخان غاز</a>
+        </div>
+        </div>
+
+        <a href="TVs.html">شاشات تلفزيون</a>
+        
       </div>
               </li>
         <li>
@@ -181,9 +336,9 @@
             </a>
         </li>
         <li>
-            <a href="Ta.html">
-                <i class="fa-solid fa-credit-card"></i>
-                <span>التقسيط</span>
+            <a href="offers.html">
+        <i class="fa-solid fa-tags" style="color: red;"></i>
+        <span style="color: red;">العروض</span>
             </a>
         </li>
 

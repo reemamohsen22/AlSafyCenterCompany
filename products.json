@@ -1834,7 +1834,7 @@
     "img": "img/product/49.png",
     "name":"سخان مياه تورنيدو كهرباء 40 لتر إينامل لمبة ليد أبيض TEEE-40MW",
     "price":3429 ,
-    "catetory":"heaters",
+    "catetory":"heater_electric",
     "images": ["img/product/49.png","img/product/49_0.png","img/product/49_1.png","img/product/49_2.png","img/product/49_3.png","img/product/49_4.png","img/product/49_5.png"],
     "desc": "سخان مياه تورنيدو كهرباء 40 لتر أبيض القدرة الكهربائية : 1500 وات القدرة الكهربائية : 1500 وات لمبة ليد كمؤشر لعملية تسخين المياه  الحلة الداخلية مطلية بطبقة من الإينامل مضاد للتآكل والصدأ",
 "specifications" :{
@@ -1901,7 +1901,7 @@
     "img": "img/product/50.png",
     "name":"سخان مياه تورنيدو غاز 6 لتر غاز بوتاجاز أبيض GHE-C06CTE-W",
     "price":3879 ,
-    "catetory":"heaters",
+    "catetory":"heater_gas",
     "images": ["img/product/50.png","img/product/50_0.png","img/product/50_1.png","img/product/50_2.png","img/product/50_3.png"],
     "desc": "سخان مياه تورنيدو غاز 6 لتر لون السخان : أبيض مخصص للاستخدام مع غاز البوتاجاز ( الأنبوبة ) سخان مزود بشاشة ديجيتال لإظهار درجة الحرارة",
 "specifications" :{
@@ -1962,7 +1962,7 @@
     "img": "img/product/51.png",
     "name":"سخان مياه تورنيدو كهرباء 55 لتر ديجيتال سيلفر EWH-S55CSE-S",
     "price":6399 ,
-    "catetory":"heaters",
+    "catetory":"heater_electric",
     "images": ["img/product/51.png","img/product/51_0.png","img/product/51_1.png"],
     "desc": "سخان مياه تورنيدو كهرباء 55 لتر سيلفر مزود بشاشة ديجيتال لمبات ليد كمؤشر لعملية تسخين المياه الحلة الداخلية من الاستانلس ستيل لا تصدأ ",
 "specifications" :{
@@ -2027,7 +2027,7 @@
     "img": "img/product/52.png",
     "name":"سخان مياه تورنيدو كهرباء 35 لتر ديجيتال أوف وايت EWH-S35CSE-F",
     "price":5999 ,
-    "catetory":"heaters",
+    "catetory":"heater_electric",
     "images": ["img/product/52.png","img/product/52_0.png","img/product/52_1.png"],
     "desc": "سخان مياه تورنيدو كهرباء 35 لتر أوف وايت مزود بشاشة ديجيتال لمبات ليد كمؤشر لعملية تسخين المياه الحلة الداخلية من الاستانلس ستيل لا تصدأ",
 "specifications" :{
