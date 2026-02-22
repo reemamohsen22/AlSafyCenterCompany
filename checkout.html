@@ -561,7 +561,7 @@ function toggleMobileSub(el) {
             
             <div class="container">
                 <div class="ordersummary">
-                    <h1>كل الطلبات</h1>
+                    <h1>ملخص الطلب </h1>
 
                     <div class="items" id="checkout_items">
                     </div>
@@ -574,7 +574,7 @@ function toggleMobileSub(el) {
 
                         <div class="shop_table">
                             <p>الشحن :</p>
-                            <span class="">EGP 50.00</span>
+                            <span id="shipping_price">0</span>
                         </div>
                         <div class="shop_table">
                             <p>الإجمالي</p>
@@ -582,6 +582,7 @@ function toggleMobileSub(el) {
                         </div>
                     </div>
                 </div>
+                
                 <div class="input_info">
 
                     <div class="address">
@@ -635,7 +636,7 @@ function toggleMobileSub(el) {
                             <input type="email" placeholder="Enter your email" name="Email">
 
 <h4 style="color: #777; font-family:Arial, Helvetica, sans-serif">إرسال صورة واضحه من الوصل او رسالة تأكيد الدفع</h4>
-                            <input type="file" id="proof-image" accept="image/*" required>                      
+                            <input type="file" id="proof-image" accept="image/*" >                      
                             <input type="hidden" name="proof_image_url" id="proof_image_url">
 
                             <button type="submit" class="submit-btn">تأكيد الطلب</button>
@@ -647,6 +648,8 @@ function toggleMobileSub(el) {
   <!-- القسم العلوي -->
   <div class="instapay-top">
     <div class="instapay-top-text">
+      <h3>الدفع عند الإستلام</h3>
+      <h3>أو</h3>
       <h3>الدفع عبر InstaPay أو فودافون كاش أو فوري</h3>
     </div>
 

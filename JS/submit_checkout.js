@@ -1,7 +1,6 @@
 
 const scriptURL =
   "https://script.google.com/macros/s/AKfycbzaq6rxqXA6lKpX__DTRXPCXoI3j940dVVLZBZwDBOlLCUdrml5iwwCimI0yBS-rG7F/exec";
-
 const form = document.getElementById("form_contact");
 const imageInput = document.getElementById("proof-image");
 const imageURLInput = document.getElementById("proof_image_url");
@@ -9,17 +8,14 @@ const imageURLInput = document.getElementById("proof_image_url");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  if (!imageInput.files[0]) {
-    alert("من فضلك ارفعي صورة تأكيد التحويل");
-    return;
-  }
-
   try {
- 
-    const imageURL = await uploadToCloudinary(imageInput.files[0]);
-
-    imageURLInput.value = imageURL;
-
+    // لو فيه صورة، ارفعها، لو لأ سيب القيمة فاضية
+    if (imageInput.files[0]) {
+      const imageURL = await uploadToCloudinary(imageInput.files[0]);
+      imageURLInput.value = imageURL;
+    } else {
+      imageURLInput.value = ""; // صورة مش مطلوبة
+    }
 
     fetch(scriptURL, {
       method: "POST",
@@ -38,7 +34,6 @@ form.addEventListener("submit", async (e) => {
     console.error(err);
   }
 });
-
 
 async function uploadToCloudinary(file) {
   const formData = new FormData();

@@ -56,150 +56,283 @@ function addToCart(product) {
     updateCart()
 }
 
+// function updateCart() {
+//     const cartItemsContainer = document.getElementById("cart_items")
+
+//     const cart = JSON.parse(localStorage.getItem('cart')) || []
+
+//     const checkout_items = document.getElementById("checkout_items")
+
+//     let items_input = document.getElementById("items")
+//     let total_Price_input = document.getElementById("total_Price")
+//     let count_Items_input = document.getElementById("count_Items")
+
+
+//     if(checkout_items){
+//         checkout_items.innerHTML=""
+
+
+
+//         items_input.value = "";
+//         total_Price_input.value = "";
+//         count_Items_input.value = "";
+//     }
+
+//     var total_Price = 0
+//     var total_count = 0
+
+//     cartItemsContainer.innerHTML = "" ;
+//     cart.forEach((item , index) => {
+
+//         let total_Price_item = item.price * item.quantity;
+
+//         total_Price += total_Price_item
+//         total_count += item.quantity
+
+//         //chec out inputs
+//          if(checkout_items){
+//         items_input.value += item.name + "   ---   " + "price : " + total_Price_item + "  ---  " + "count : " + item.quantity + "\n"
+
+//         total_Price_input.value = total_Price + 50
+//         count_Items_input.value = total_count 
+//          }
+        
+//         cartItemsContainer.innerHTML += `
+        
+//             <div class="item_cart">
+//                 <img src="${item.img}" alt="">
+//                 <div class="content">
+//                     <h4>${item.name}</h4>
+//                     <p class="price_cart">EGP ${total_Price_item}</p>
+//                     <div class="quantity_control">
+//                         <button class="decrease_quantity" data-index=${index}>-</button>
+//                         <span class="quantity">${item.quantity}</span>
+//                         <button class="Increase_quantity" data-index=${index}>+</button>
+//                     </div>
+//                 </div>
+
+//                 <button class="delete_item" data-inex="${index}" ><i class="fa-solid fa-trash-can"></i></button>
+//             </div>
+
+//         `
+
+//         if(checkout_items){
+//             checkout_items.innerHTML += `
+//             <div class="item_cart">
+
+//                             <div class="image_name">
+//                                 <img src="${item.img}" alt="">
+
+//                                 <div class="content">
+//                                     <h4>${item.name}</h4>
+//                                     <p class="price_cart">${total_Price_item}</p>
+//                                     <div class="quantity_control">
+//                                         <button class="decrease_quantity" data-index=${index}>-</button>
+//                                         <span class="quantity">${item.quantity}</span>
+//                                         <button class="Increase_quantity" data-index=${index}>+</button>
+//                                     </div>
+//                                 </div>
+//                             </div>
+
+
+//                             <button class="delete_item" data-inex="${index}"><i class="fa-solid fa-trash-can"></i></button>
+
+
+
+//                         </div>
+
+//             `
+//         }
+
+
+//     })
+
+
+//     const price_cart_total = document.querySelector('.price_cart_toral')
+    
+//     const count_item_cart = document.querySelector('.Count_item_cart')
+
+//     const count_item_header = document.querySelector('.count_item_header')
+    
+//     price_cart_total.innerHTML = `EGP ${total_Price}`
+
+//     count_item_cart.innerHTML = total_count
+
+//     count_item_header.innerHTML = total_count
+
+
+//     if(checkout_items){
+//         const subtotal_checkout = document.querySelector(".subtotal_checkout")
+//         const total_checkout = document.querySelector(".total_checkout")
+
+//         subtotal_checkout.innerHTML= `EGP ${total_Price}`
+//         total_checkout.innerHTML= `EGP ${total_Price + 50}`
+//     }
+
+
+//     const increaseButtons = document.querySelectorAll(".Increase_quantity")
+//     const decreaseButtons = document.querySelectorAll(".decrease_quantity")
+
+//     increaseButtons.forEach(button => {
+//         button.addEventListener("click" , (event) =>{
+//             const itemIndex = event.target.getAttribute("data-index")
+//             increaseQuantity(itemIndex)
+//         })
+//     })
+
+
+//     decreaseButtons.forEach(button => {
+//         button.addEventListener("click" , (event) =>{
+//             const itemIndex = event.target.getAttribute("data-index")
+//             decreaseQuantity(itemIndex)
+//         })
+//     })
+
+
+
+//     const delteButtons = document.querySelectorAll('.delete_item')
+    
+//     delteButtons.forEach(button =>{
+//         button.addEventListener('click' , (event) =>{
+//             const itemIndex = event.target.closest('button').getAttribute('data-inex')
+//             removeFromCart(itemIndex)
+//         })
+//     })
+
+// }
+
+
+
+
+
+
+
+
+
 function updateCart() {
-    const cartItemsContainer = document.getElementById("cart_items")
+    const cartItemsContainer = document.getElementById("cart_items");
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const checkout_items = document.getElementById("checkout_items");
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || []
+    const items_input = document.getElementById("items");
+    const total_Price_input = document.getElementById("total_Price");
+    const count_Items_input = document.getElementById("count_Items");
 
-    const checkout_items = document.getElementById("checkout_items")
+    const governorateSelect = document.getElementById("governorate");
+    const shippingSpan = document.getElementById("shipping_price");
 
-    let items_input = document.getElementById("items")
-    let total_Price_input = document.getElementById("total_Price")
-    let count_Items_input = document.getElementById("count_Items")
-
-
-    if(checkout_items){
-        checkout_items.innerHTML=""
-
-
-
+    if (checkout_items) {
+        checkout_items.innerHTML = "";
         items_input.value = "";
         total_Price_input.value = "";
         count_Items_input.value = "";
     }
 
-    var total_Price = 0
-    var total_count = 0
+    let total_Price = 0;
+    let total_count = 0;
 
-    cartItemsContainer.innerHTML = "" ;
-    cart.forEach((item , index) => {
+    cartItemsContainer.innerHTML = "";
 
+    cart.forEach((item, index) => {
         let total_Price_item = item.price * item.quantity;
+        total_Price += total_Price_item;
+        total_count += item.quantity;
 
-        total_Price += total_Price_item
-        total_count += item.quantity
+        if (checkout_items) {
+            items_input.value += `${item.name} --- price: ${total_Price_item} --- count: ${item.quantity}\n`;
+            count_Items_input.value = total_count;
+        }
 
-        //chec out inputs
-         if(checkout_items){
-        items_input.value += item.name + "   ---   " + "price : " + total_Price_item + "  ---  " + "count : " + item.quantity + "\n"
-
-        total_Price_input.value = total_Price + 50
-        count_Items_input.value = total_count 
-         }
-        
         cartItemsContainer.innerHTML += `
-        
             <div class="item_cart">
                 <img src="${item.img}" alt="">
                 <div class="content">
                     <h4>${item.name}</h4>
                     <p class="price_cart">EGP ${total_Price_item}</p>
                     <div class="quantity_control">
-                        <button class="decrease_quantity" data-index=${index}>-</button>
+                        <button type="button" class="decrease_quantity" data-index=${index}>-</button>
                         <span class="quantity">${item.quantity}</span>
-                        <button class="Increase_quantity" data-index=${index}>+</button>
+                        <button type="button" class="Increase_quantity" data-index=${index}>+</button>
                     </div>
                 </div>
-
-                <button class="delete_item" data-inex="${index}" ><i class="fa-solid fa-trash-can"></i></button>
+                <button class="delete_item" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
             </div>
+        `;
 
-        `
-
-        if(checkout_items){
+        if (checkout_items) {
             checkout_items.innerHTML += `
             <div class="item_cart">
-
-                            <div class="image_name">
-                                <img src="${item.img}" alt="">
-
-                                <div class="content">
-                                    <h4>${item.name}</h4>
-                                    <p class="price_cart">${total_Price_item}</p>
-                                    <div class="quantity_control">
-                                        <button class="decrease_quantity" data-index=${index}>-</button>
-                                        <span class="quantity">${item.quantity}</span>
-                                        <button class="Increase_quantity" data-index=${index}>+</button>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <button class="delete_item" data-inex="${index}"><i class="fa-solid fa-trash-can"></i></button>
-
-
-
+                <div class="image_name">
+                    <img src="${item.img}" alt="">
+                    <div class="content">
+                        <h4>${item.name}</h4>
+                        <p class="price_cart">${total_Price_item}</p>
+                        <div class="quantity_control">
+                            <button type="button" class="decrease_quantity" data-index=${index}>-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button type="button" class="Increase_quantity" data-index=${index}>+</button>
                         </div>
-
-            `
+                    </div>
+                </div>
+                <button  class="delete_item" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+            `;
         }
+    });
 
+    const price_cart_total = document.querySelector('.price_cart_toral');
+    const count_item_cart = document.querySelector('.Count_item_cart');
+    const count_item_header = document.querySelector('.count_item_header');
 
-    })
+    price_cart_total.innerHTML = `EGP ${total_Price}`;
+    count_item_cart.innerHTML = total_count;
+    count_item_header.innerHTML = total_count;
 
+    // 🟢 حساب الشحن حسب المحافظة
+    let shippingCost = 0;
 
-    const price_cart_total = document.querySelector('.price_cart_toral')
-    
-    const count_item_cart = document.querySelector('.Count_item_cart')
+    if (governorateSelect) {
+        const value = governorateSelect.value;
 
-    const count_item_header = document.querySelector('.count_item_header')
-    
-    price_cart_total.innerHTML = `EGP ${total_Price}`
-
-    count_item_cart.innerHTML = total_count
-
-    count_item_header.innerHTML = total_count
-
-
-    if(checkout_items){
-        const subtotal_checkout = document.querySelector(".subtotal_checkout")
-        const total_checkout = document.querySelector(".total_checkout")
-
-        subtotal_checkout.innerHTML= `EGP ${total_Price}`
-        total_checkout.innerHTML= `EGP ${total_Price + 50}`
+        if (value === "الفيوم") {
+            shippingCost = 50;
+        } else if (value) {
+            shippingCost = 70;
+        }
     }
 
+    if (checkout_items) {
+        const subtotal_checkout = document.querySelector(".subtotal_checkout");
+        const total_checkout = document.querySelector(".total_checkout");
 
-    const increaseButtons = document.querySelectorAll(".Increase_quantity")
-    const decreaseButtons = document.querySelectorAll(".decrease_quantity")
+        subtotal_checkout.innerHTML = `EGP ${total_Price}`;
+        total_checkout.innerHTML = `EGP ${total_Price + shippingCost}`;
 
-    increaseButtons.forEach(button => {
-        button.addEventListener("click" , (event) =>{
-            const itemIndex = event.target.getAttribute("data-index")
-            increaseQuantity(itemIndex)
-        })
-    })
+        if (shippingSpan) {
+            shippingSpan.innerText = shippingCost;
+        }
 
-
-    decreaseButtons.forEach(button => {
-        button.addEventListener("click" , (event) =>{
-            const itemIndex = event.target.getAttribute("data-index")
-            decreaseQuantity(itemIndex)
-        })
-    })
-
-
-
-    const delteButtons = document.querySelectorAll('.delete_item')
-    
-    delteButtons.forEach(button =>{
-        button.addEventListener('click' , (event) =>{
-            const itemIndex = event.target.closest('button').getAttribute('data-inex')
-            removeFromCart(itemIndex)
-        })
-    })
-
+        total_Price_input.value = total_Price + shippingCost;
+    }
 }
+
+
+
+const governorateSelect = document.getElementById("governorate");
+
+if (governorateSelect) {
+  governorateSelect.addEventListener("change", function () {
+    updateCart();
+  });
+}
+
+
+
+
 
 
 function increaseQuantity(index){
@@ -339,3 +472,25 @@ function open_Menu() {
 // function close_Menu() {
 //   document.querySelector('.mobile_sidebar').classList.remove('active');
 // }
+
+document.addEventListener('click', function(e){
+    // زيادة الكمية
+    if(e.target.closest('.Increase_quantity')){
+        const index = e.target.closest('.Increase_quantity').dataset.index;
+        increaseQuantity(index);
+    }
+
+    // نقص الكمية
+    if(e.target.closest('.decrease_quantity')){
+        const index = e.target.closest('.decrease_quantity').dataset.index;
+        decreaseQuantity(index);
+    }
+
+    // حذف العنصر
+    if(e.target.closest('.delete_item')){
+        const index = e.target.closest('.delete_item').dataset.index;
+        removeFromCart(index);
+    }
+
+    
+});
