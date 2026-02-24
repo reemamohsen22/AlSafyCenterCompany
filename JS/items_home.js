@@ -44,7 +44,9 @@ fetch('products.json')
                     <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
                         <i class="fa-solid fa-cart-shopping"></i> ${isInCart ? 'تمت الإضافة' : 'أضف للسلة'}
                     </span>
-                    <span class="icon_product"><i class="fa-regular fa-heart"></i></span>
+            <span class="icon_product fav_btn" data-id="${product.id}">
+            <i class="fa-regular fa-heart"></i>
+            </span>
                 </div>
             </div>
         `;
@@ -93,6 +95,8 @@ document.addEventListener("click", (e) => {
     }
 });
 
+syncFavouriteIcons();
+updateFavouriteCount();
 
     closeModal.onclick = () => modal.style.display = "none";
     window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };

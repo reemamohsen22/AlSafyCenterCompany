@@ -47,7 +47,11 @@ fetch('products.json')
                     <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
                         <i class="fa-solid fa-cart-shopping"></i> ${isInCart ? 'تمت الإضافة' : 'أضف للسلة'}
                     </span>
-                    <span class="icon_product"><i class="fa-regular fa-heart"></i></span>
+
+            <span class="icon_product fav_btn" data-id="${product.id}">
+            <i class="fa-regular fa-heart"></i>
+            </span>
+
                 </div>
             </div>
         `;
@@ -79,6 +83,10 @@ fetch('products.json')
             }
         }
     });
+
+syncFavouriteIcons();
+updateFavouriteCount();
+
 
     const modalHTML = `
         <div id="productModal" class="product-modal" style="display:none;">

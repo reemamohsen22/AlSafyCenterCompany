@@ -27,6 +27,13 @@ fetch('products.json')
                     <i class="fa-solid fa-cart-shopping"></i>
                     ${isInCart ? 'تمت الإضافة' : 'أضف للسلة'}
                 </span>
+
+
+            <span class="icon_product fav_btn" data-id="${product.id}">
+            <i class="fa-regular fa-heart"></i>
+            </span>
+
+
             </div>
         </div>
         `;
@@ -36,4 +43,8 @@ fetch('products.json')
     const small_ = document.getElementById("mobiles");
 
     fridges.forEach(product => renderProduct(product));
+
+syncFavouriteIcons();
+updateFavouriteCount();
+
 });

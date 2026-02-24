@@ -292,6 +292,16 @@ function updateCart() {
     count_item_cart.innerHTML = total_count;
     count_item_header.innerHTML = total_count;
 
+
+
+
+const cartBadgeMobile = document.querySelector('.cart-badge-mobile');
+if (cartBadgeMobile) {
+    cartBadgeMobile.innerHTML = total_count;
+}
+
+
+
     // 🟢 حساب الشحن حسب المحافظة
     let shippingCost = 0;
 
@@ -494,3 +504,72 @@ document.addEventListener('click', function(e){
 
     
 });
+
+
+
+
+
+
+
+
+
+
+// تحميل المفضلة من التخزين
+let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+function updateFavouriteCount() {
+    const favCount = document.querySelector(".count_favourite");
+    if (favCount) {
+        favCount.innerText = favourites.length;
+    }
+}
+
+// تحديث شكل القلوب
+function syncFavouriteIcons() {
+    document.querySelectorAll(".fav_btn").forEach(btn => {
+        const id = btn.dataset.id;
+        const icon = btn.querySelector("i");
+
+        if (favourites.includes(id)) {
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+            icon.style.color = "red";
+        } else {
+            icon.classList.add("fa-regular");
+            icon.classList.remove("fa-solid");
+            icon.style.color = "";
+        }
+    });
+}
+
+// الضغط على القلب
+document.addEventListener("click", function(e) {
+    const favBtn = e.target.closest(".fav_btn");
+    if (!favBtn) return;
+
+    const productId = favBtn.dataset.id;
+
+    if (favourites.includes(productId)) {
+        favourites = favourites.filter(id => id !== productId);
+    } else {
+        favourites.push(productId);
+    }
+
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    updateFavouriteCount();
+    syncFavouriteIcons();
+});
+
+// عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", function() {
+    updateFavouriteCount();
+    syncFavouriteIcons();
+});
+
+
+
+
+function open_close_fav(){
+    document.querySelector(".favourites").classList.toggle("active");
+}
+

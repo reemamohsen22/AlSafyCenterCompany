@@ -14,7 +14,7 @@
     <body>
     <div class="cart">
         <div class="top_cart">
-            <h3>Cart Items : <span class="Count_item_cart">0</span></h3>
+            <h3>عناصر السله : <span class="Count_item_cart">0</span></h3>
             <span onclick="open_close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
         </div>
         <div class="items_in_cart" id="cart_items">
@@ -32,17 +32,52 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+<div class="favourites">
+    <div class="top_fav">
+        <h3>المفضلة : <span class="Count_fav">0</span></h3>
+        <span onclick="open_close_fav()" class="close_fav">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </span>
+    </div>
+
+    <div class="items_in_fav" id="fav_items"></div>
+</div>
+
+
+
+
+
+
+    
     <header>
         <div class="top_header">
             <div class="container">
                 <a href="index.html" class="logo"> <img src="img/logo.png" alt=""></a>
                 <div class="header_icons">
-                    <div class="icon">
-                        <a href="#">
-                            <i class="fa-regular fa-heart"></i>
-                            <span class="count count_favourite">0</span>
-                        </a>
-                    </div>
+
+
+
+<div class="icon">
+    <a href="javascript:void(0)" onclick="open_close_fav()">
+        <i class="fa-regular fa-heart"></i>
+        <span class="count count_favourite">0</span>
+    </a>
+</div>
+
+
+
+
+
                     <div onclick="open_close_cart()" class="icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span class="count count_item_header">0</span>
@@ -230,7 +265,7 @@
         <div class="container">
 
             <div class="box">
-                <a href="#" class="link_btn"></a>
+                <a href="Home_SmallAppliances.html?filter=filters" class="link_btn"></a>
 
                 <img src="img/banner3_3.png" alt="">
                 <div class="text">
@@ -247,7 +282,7 @@
             </div>
             
             <div class="box">
-                <a href="#" class="link_btn"></a>
+                <a href="Home_SmallAppliances.html?filter=filters" class="link_btn"></a>
 
                 <img src="img/banner3_4.png" alt="">
                 <div class="text">
@@ -553,9 +588,10 @@
             </a>
         </li>
 
- <li>
+<li>
     <a href="checkout.html" class="cart-icon-mobile">
         <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge-mobile">0</span>
         <span>السلة</span>
     </a>
 </li>

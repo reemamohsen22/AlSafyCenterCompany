@@ -54,7 +54,9 @@ const db = getFirestore(app);
                     <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
                         <i class="fa-solid fa-cart-shopping"></i> ${isInCart ? 'تمت الإضافة' : 'إضافة إلي السلة'}
                     </span>
-                    <span class="icon_product"><i class="fa-regular fa-heart"></i></span>
+            <span class="icon_product fav_btn" data-id="${product.id}">
+            <i class="fa-regular fa-heart"></i>
+            </span>
                 </div>
             </div>
         `;
@@ -94,6 +96,10 @@ async function loadProducts() {
             }
         }
     });
+
+
+    syncFavouriteIcons();
+updateFavouriteCount();
 
 }
 
