@@ -7,7 +7,7 @@
     <title>شركة الصافي للأجهزة الكهربائية</title>
     <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <!-- File CSS -->
           <link rel="stylesheet" href="CSS/style.css">
     </head>
@@ -15,7 +15,7 @@
     <div class="cart">
         <div class="top_cart">
             <h3>عناصر السله : <span class="Count_item_cart">0</span></h3>
-            <span onclick="open_close_cart()" class="close_cart"><i class="fa-regular fa-circle-xmark"></i></span>
+            <span onclick="open_close_cart()" class="close_cart"><i class="fa-solid fa-circle-xmark"></i></span>
         </div>
         <div class="items_in_cart" id="cart_items">
         </div>
@@ -36,12 +36,6 @@
 
 
 
-
-
-
-
-
-
 <div class="favourites">
     <div class="top_fav">
         <h3>المفضلة : <span class="Count_fav">0</span></h3>
@@ -52,11 +46,6 @@
 
     <div class="items_in_fav" id="fav_items"></div>
 </div>
-
-
-
-
-
 
     
     <header>
@@ -73,10 +62,6 @@
         <span class="count count_favourite">0</span>
     </a>
 </div>
-
-
-
-
 
                     <div onclick="open_close_cart()" class="icon">
                         <i class="fa-solid fa-cart-shopping"></i>
@@ -427,10 +412,8 @@
                     <a href="kitchen.html?filter=Food"><i class="fa-solid fa-caret-right"></i>محضرة طعام</a>
                 </div>
             </div>
-            
             <div class="row">
                 <h4>صفحات سريعه </h4>
-
                 <div class="links">
                     <a href="index.html"><i class="fa-solid fa-caret-right"></i>الرئيسية </a>
                     <a href="Ta.html"><i class="fa-solid fa-caret-right"></i> التقسيط</a>
@@ -441,17 +424,23 @@
                 </div>
             </div>
             </div>
-            
         </div>
         <div class="bottom_footer">
-            <div class="container">
-                <p>&copy; <span>Elsafy Center</span> كل الحقوق محفوظة.</p>
-
-                <div class="payment_img">
-                    <img src="img/payment_method.png" alt="">
-                </div>
-            </div>
+    <div class="container">
+        <p>
+            &copy; <span>Elsafy Center</span> كل الحقوق محفوظة.
+        </p>
+        <p class="made_by">
+            Developed by 
+            <a href="Reem.html" target="_blank">
+                Eng / Reem Mohsen
+            </a>
+        </p>
+        <div class="payment_img">
+            <img src="img/payment_method.png" alt="">
         </div>
+    </div>
+</div>
     </footer>
 <!-- Mobile Bottom Nav Bar -->
 <nav class="mobile_bottom_nav">
@@ -461,7 +450,6 @@
         <i class="fa-solid fa-bars"></i>
         <span>الأقسام</span>
       </a>
-
       <div class="mobile_category_list">
         <button class="close_mobile_cat" onclick="toggleMobileCategory()" style="padding: 10px ; color: red; font-size: 15px;"> إغلاق✖</button>
         <a href="offers.html">كل العروض</a>
@@ -570,9 +558,7 @@
       <a href="heater.html?filter=heater_gas">سخان غاز</a>
         </div>
         </div>
-
         <a href="TVs.html">شاشات تلفزيون</a>
-        
       </div>
               </li>
         <li>
@@ -587,7 +573,6 @@
         <span style="color: red;">العروض</span>
             </a>
         </li>
-
 <li>
     <a href="checkout.html" class="cart-icon-mobile">
         <i class="fa-solid fa-cart-shopping"></i>
@@ -607,7 +592,6 @@
 function toggleMobileCategory() {
   document.querySelector('.mobile-category').classList.toggle('active');
 }
-
 function toggleMobileSub(el) {
   const submenu = el.nextElementSibling;
   submenu.style.display = submenu.style.display === "block" ? "none" : "block";
@@ -618,18 +602,15 @@ function toggleMobileSub(el) {
 function scrollToSections() {
     const section = document.getElementById("sections");
     const offset = 120;
-
     const position =
         section.getBoundingClientRect().top +
         window.pageYOffset -
         offset;
-
     window.scrollTo({
         top: position,
         behavior: "smooth"
     });
 }
-
 </script>
       <script src="JS/swiper.js"></script>
       <script src="JS/items_home.js"></script>
