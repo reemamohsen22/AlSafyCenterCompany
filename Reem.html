@@ -92,6 +92,155 @@ body {
 .made_by {
     margin-top: 8px;
     font-size: 14px;
+
+
+
+
+    .services {
+    padding: 60px 10%;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.service-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+}
+/* ===== Projects Section ===== */
+.projects {
+    padding: 80px 10%;
+    background: linear-gradient(to right, #f8f9fc, #eef1f7);
+    text-align: center;
+}
+
+.projects h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #222;
+    position: relative;
+}
+
+.projects h2::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #007bff;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Grid */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Card */
+.project-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Image */
+.project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+
+/* Overlay */
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
+    color: #fff;
+    transform: translateY(100%);
+    transition: 0.4s ease;
+}
+
+/* Text */
+.project-info h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+.project-info p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+/* Button */
+.project-info a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.project-info a:hover {
+    background: #00c6ff;
+}
+
+/* Hover Effects */
+.project-card:hover img {
+    transform: scale(1.1);
+}
+
+.project-card:hover .project-info {
+    transform: translateY(0);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 </style>
 <body>
@@ -102,26 +251,88 @@ body {
                 <img src="img/reem.png">
             </div>
             <div class="hero-text">
-                <h1>Eng / Reem Mohsen</h1>
-                <p class="title">Software Engineer</p>
-                <p class="title">Fullstack .NET Developer</p>
+                <h1>Eng.Reem Mohsen</h1>
+                <p class="title">Software Engineer & Fullstack .NET Developer</p>
+                <p class="title">Programming and Artificial Intelligence Instructor | Technical Trainer</p>
                 <p class="contact">📞 01007171387</p>
             </div>
         </div>
     </header>
     <!-- About / Services Section -->
-    <section class="services">
-        <div class="container">
-            <h2>My Services</h2>
+    <!-- <section class="services"> -->
+        <!-- <div class="container"> -->
+            <!-- <h2>My Services</h2>
             <ul>
                 <li>Web Application Development</li>
                 <li>Fullstack .NET Development</li>
                 <li>Frontend Design (HTML, CSS, JS)</li>
                 <li>Backend Development (C#, .NET Core)</li>
                 <li>Database Management (SQL Server, MySQL)</li>
-            </ul>
+            </ul> -->
+            <section class="services">
+    <h2>My Services</h2>
+
+    <div class="services-container">
+
+        <div class="service-card">
+            <h3>Web Application Development</h3>
+            <p>Building responsive web applications using modern technologies.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Fullstack .NET Development</h3>
+            <p>Developing complete solutions using ASP.NET Core, C#, and modern frontend tools.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Frontend Development</h3>
+            <p>Creating clean, responsive, and user-friendly interfaces using HTML, CSS, and JavaScript.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Backend Development</h3>
+            <p>Designing secure and efficient server-side logic using C# and .NET Core.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Programming & AI Instruction</h3>
+            <p>Teaching programming and artificial intelligence concepts in a simple and practical way.</p>
         </div>
     </section>
+    <section class="projects">
+    <h2>My Projects</h2>
+
+    <div class="projects-container">
+
+        <div class="project-card">
+            <img src="/img/alsafy.png" alt="Project 1">
+            <div class="project-info">
+                <h3>E-Commerce Website</h3>
+                <p>Fullstack web application using ASP.NET Core with secure authentication and payment integration.</p>
+                <a href="https://alsafycentercompany.netlify.app/">View Project</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project2.jpg" alt="Project 2">
+            <div class="project-info">
+                <h3>AI Image Classification</h3>
+                <p>Machine learning project for classifying images using trained models and Python.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="images/project3.jpg" alt="Project 3">
+            <div class="project-info">
+                <h3>Student Management System</h3>
+                <p>System for managing students, courses, and grades using .NET and SQL Server.</p>
+                <a href="#">View Project</a>
+            </div>
+        </div>
+
+    </div>
+</section>
     <!-- Footer -->
     <footer class="bottom_footer">
         <div class="container">

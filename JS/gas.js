@@ -1,8 +1,7 @@
-
-fetch('products.json')
+fetch('http://127.0.0.1:3000/products')
 .then(res => res.json())
 .then(data => {
-
+console.log(data);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const container = document.getElementById("fridge_products");
 
@@ -33,8 +32,6 @@ fetch('products.json')
             <span class="icon_product fav_btn" data-id="${product.id}">
             <i class="fa-regular fa-heart"></i>
             </span>
-
-
 
             </div>
         </div>

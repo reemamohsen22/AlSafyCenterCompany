@@ -3,9 +3,10 @@
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-fetch("products.json")
+fetch('http://127.0.0.1:3000/products')
   .then(res => res.json())
   .then(data => {
+    console.log(data);
     const product = data.find(p => p.id == productId);
     if (!product) return;
 

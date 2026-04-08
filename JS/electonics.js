@@ -1,7 +1,7 @@
-
-fetch('products.json')
+fetch('http://127.0.0.1:3000/products')
 .then(res => res.json())
 .then(data => {
+    console.log(data);
 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const container = document.getElementById("fridge_products");

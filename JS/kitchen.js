@@ -1,6 +1,7 @@
-fetch('products.json')
+fetch('http://127.0.0.1:3000/products')
 .then(response => response.json())
 .then(data => {
+    console.log(data);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const swiper_mixers = document.getElementById("swiper_mixers");

@@ -1,6 +1,7 @@
-fetch('products.json')
+fetch('http://127.0.0.1:3000/products')
 .then(response => response.json())
 .then(data => {
+    console.log(data);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
     const swiper_yogurt = document.getElementById("swiper_yogurt");
@@ -61,7 +62,7 @@ fetch('products.json')
     const filter = urlParams.get('filter'); 
 
    
-    data.forEach(product => {
+    data.products.forEach(product => {
         if (!filter || filter === "all") {
 
             if (product.catetory === "yogurt") renderProduct(swiper_yogurt, product);

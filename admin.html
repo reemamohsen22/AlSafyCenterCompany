@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; direction: rtl; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+  img { max-width: 50px; }
+  button { padding: 5px 10px; margin: 2px; cursor: pointer; }
+  #addForm { margin-top: 10px; border: 1px solid #ccc; padding: 10px; display: none; }
+  input { margin: 5px; padding: 5px; }
+</style>
+</head>
+<body>
+
+<h2>لوحة التحكم - المنتجات</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>الصورة</th>
+      <th>الاسم</th>
+      <th>السعر</th>
+      <th>الفئة</th>
+      <th>التحكم</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<button onclick="toggleAddForm()">+ إضافة منتج</button>
+
+<div id="addForm">
+  <input id="name" placeholder="اسم المنتج">
+  <input id="price" type="number" placeholder="السعر">
+  <input id="img" placeholder="رابط الصورة">
+  <input id="catetory" placeholder="الفئة">
+  <button onclick="addProduct()">حفظ</button>
+</div>
+
+<script src="JS/admin.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<style>
+  body {
+    font-family: Arial;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+  }
+
+  th {
+    background: #333;
+    color: #fff;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  button {
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  #addForm {
+    display: none;
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1>لوحة تحكم المنتجات</h1>
+
+<table id="productsTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>الاسم</th>
+      <th>السعر</th>
+      <th>الصورة</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<button onclick="toggleAddForm()">+ إضافة منتج</button>
+
+<div id="addForm">
+  <h3>إضافة منتج جديد</h3>
+  <input id="name" placeholder="اسم المنتج"><br>
+  <input id="price" type="number" placeholder="السعر"><br>
+  <input id="img" placeholder="رابط الصورة"><br>
+  <input id="catetory" placeholder="الفئة"><br>
+  <textarea id="desc" placeholder="الوصف"></textarea><br>
+  <button onclick="addProduct()">حفظ</button>
+  <!-- <button type="button" onclick="addProduct()">حفظ</button> -->
+</div>
+
+<script src="JS/admin.js"></script>
+</body>
+</html>
