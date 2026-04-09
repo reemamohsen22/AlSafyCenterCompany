@@ -73,6 +73,126 @@
 
 // // تشغيل عند تحميل الصفحة
 // loadProducts();
+
+
+
+
+
+
+
+
+// const admins = [
+//   { username: "reem", password: "1234" },
+//   { username: "admin2", password: "5678" },
+//   { username: "admin3", password: "9999" }
+// ];
+
+// function login() {
+//   const user = document.getElementById("username").value;
+//   const pass = document.getElementById("password").value;
+
+//   const valid = admins.find(a => a.username === user && a.password === pass);
+
+//   if (valid) {
+//     document.getElementById("loginBox").style.display = "none";
+//     document.getElementById("adminContent").style.display = "block";
+
+//     // حفظ تسجيل الدخول
+//     localStorage.setItem("isAdmin", "true");
+//   } else {
+//     document.getElementById("error").innerText = "بيانات غلط ❌";
+//   }
+// }
+
+
+
+
+
+
+
+// window.onload = function () {
+//   const isAdmin = localStorage.getItem("isAdmin");
+
+//   if (isAdmin === "true") {
+//     document.getElementById("loginBox").style.display = "none";
+//     document.getElementById("adminContent").style.display = "block";
+//   }
+// };
+
+
+
+
+
+
+// function logout() {
+//   localStorage.removeItem("isAdmin");
+//   location.reload();
+// }
+
+
+
+
+
+
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAfEQzxfnQwprQ3M6oFRRN8Kr6TUoamrL4",
+  authDomain: "alsafy-admin.firebaseapp.com",
+  projectId: "alsafy-admin",
+  appId: "1:503327475942:web:30ca804c3cd49cf88b9327"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function login() {
+  const email = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      alert("تم تسجيل الدخول ✅");
+      location.reload();
+    })
+    .catch((error) => {
+      alert("بيانات غلط ❌");
+      console.log(error);
+    });
+}
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    document.getElementById("adminContent").style.display = "block";
+    document.getElementById("loginBox").style.display = "none";
+
+    // هنا نحمل المنتجات بعد ما يسجل دخول
+    loadProducts();
+  } else {
+    document.getElementById("adminContent").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+  }
+});
+
+function logout() {
+  auth.signOut().then(() => {
+    location.reload();
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 const apiURL = "http://127.0.0.1:3000/products";
 const tbody = document.querySelector("#productsTable tbody");
 const addForm = document.getElementById("addForm");
