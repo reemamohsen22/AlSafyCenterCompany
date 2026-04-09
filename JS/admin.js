@@ -168,32 +168,7 @@ auth.onAuthStateChanged(user => {
     document.getElementById("loginBox").style.display = "none";
 
     // هنا نحمل المنتجات بعد ما يسجل دخول
-    loadProducts();
-  } else {
-    document.getElementById("adminContent").style.display = "none";
-    document.getElementById("loginBox").style.display = "block";
-  }
-});
-
-function logout() {
-  auth.signOut().then(() => {
-    location.reload();
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-const apiURL = "http://127.0.0.1:3000/products";
+    const apiURL = "http://127.0.0.1:3000/products";
 const tbody = document.querySelector("#productsTable tbody");
 const addForm = document.getElementById("addForm");
 
@@ -290,4 +265,29 @@ async function editProduct(id) {
 }
 
 // تشغيل
-loadProducts();
+
+    loadProducts();
+  } else {
+    document.getElementById("adminContent").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+  }
+});
+
+function logout() {
+  auth.signOut().then(() => {
+    location.reload();
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
