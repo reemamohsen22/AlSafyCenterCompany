@@ -192,3 +192,115 @@
 //         }
 //     });
 // });
+
+
+
+
+
+
+fetch('http://127.0.0.1:3000/products')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const swiper_heater_gas = document.getElementById("swiper_heater_gas");
+    const swiper_heater_electric  = document.getElementById("swiper_heater_electric");
+
+
+    function renderProduct(container, product) {
+        const isInCart = cart.some(cartItem => cartItem.id === product.id);
+        const old_price_Pargrahp = product.old_price ? `<p class="old_price">EGP ${product.old_price}</p>` : "";
+        const percent_disc_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
+
+        container.innerHTML += `
+            <div class="swiper-slide product" data-id="${product.id}">
+                ${percent_disc_div}
+                <div class="img_product">
+                    <a href="#" class="view-details" data-id="${product.id}">
+                        <img src="${product.img}" alt="${product.name}" class="product-img">
+                    </a>
+                </div>
+
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <p class="name_product">
+                    <a href="#" class="view-details" data-id="${product.id}">${product.name}</a>
+                </p>
+
+                <div class="price">
+                    <p><span>EGP ${product.price}</span></p>
+                    ${old_price_Pargrahp}
+                </div>
+
+                <div class="icons">
+                    <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
+                        <i class="fa-solid fa-cart-shopping"></i> ${isInCart ? 'تمت الإضافة' : 'إضافة إلي السلة'}
+                    </span>
+            <span class="icon_product fav_btn" data-id="${product.id}">
+            <i class="fa-regular fa-heart"></i>
+            </span>
+                </div>
+            </div>
+        `;
+    }
+
+   
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = urlParams.get('filter'); 
+
+   
+    data.forEach(product => {
+        if (!filter || filter === "all") {
+          
+            if (product.catetory === "heater_gas") renderProduct(swiper_heater_gas, product);
+            if (product.catetory === "heater_electric") renderProduct(swiper_heater_electric, product);
+        } else {
+            if (product.catetory === filter) {
+                if (filter === "heater_gas") renderProduct(swiper_heater_gas, product);
+                if (filter === "heater_electric") renderProduct(swiper_heater_electric, product);
+            }
+        }
+    }
+);
+syncFavouriteIcons();
+updateFavouriteCount();
+
+    const modalHTML = `
+        <div id="productModal" class="product-modal" style="display:none;">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <img id="modalImg" src="" alt="">
+                <h2 id="modalName"></h2>
+                <p id="modalPrice"></p>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const modal = document.getElementById("productModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalName = document.getElementById("modalName");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalDesc = document.getElementById("modalDesc");
+
+    document.addEventListener("click", (e) => {
+        const target = e.target.closest(".view-details");
+        if (target) {
+            e.preventDefault();
+            const productId = target.dataset.id;
+            window.location.href = `product.html?id=${productId}`;
+        }
+    });
+
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+});
