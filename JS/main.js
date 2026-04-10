@@ -18,7 +18,8 @@ function open_close_cart() {
     cart.classList.toggle("active")
 }
 
-fetch('http://127.0.0.1:3000/products')
+fetch("products.json")
+
 .then(response => response.json())
 .then(data => {
     console.log(data);
@@ -278,7 +279,8 @@ document.addEventListener("click", function(e) {
 
     const productId = btn.dataset.id;
 
-    fetch('http://127.0.0.1:3000/products')
+fetch("products.json")
+
     .then(res => res.json())
     .then(data => {
         console.log(data);
