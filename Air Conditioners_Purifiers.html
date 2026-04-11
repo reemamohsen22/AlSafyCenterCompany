@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+  <!-- <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAfEQzxfnQwprQ3M6oFRRN8Kr6TUoamrL4",
+  authDomain: "alsafy-admin.firebaseapp.com",
+  projectId: "alsafy-admin",
+  storageBucket: "alsafy-admin.firebasestorage.app",
+  messagingSenderId: "503327475942",
+  appId: "1:503327475942:web:30ca804c3cd49cf88b9327",
+  measurementId: "G-5R6GSJB21B"
+};
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script> -->
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Appliances</title>
@@ -432,31 +452,27 @@ function toggleMobileSub(el) {
 
         <div class="container">
 
-                <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
+                <!-- <div class="swiper-button-next btn_Swip"></div>
+                <div class="swiper-button-prev btn_Swip"></div> -->
             </div>
-
         </div>
     </div>
 
     <div class="slider_products slide">
 
         <div class="container">
-
             <div class="slide_product mySwiper">
-
                 <div class="top_slide">
                     <h2><i class="fa-solid fa-tags"></i> مكيفات هواء</h2>
                 </div>
-                
-                <div class="products swiper-wrapper" id="swiper_elctronics">
-                    <div class="products-grid" id="fridge_products"></div>
+                <div class="products-grid" id="swiper_elctronics">
+                <!-- <div class="products-grid" id="fridge_products"></div> -->
 
 
                 </div>
-
+<!-- 
                 <div class="swiper-button-next btn_Swip"></div>
-                <div class="swiper-button-prev btn_Swip"></div>
+                <div class="swiper-button-prev btn_Swip"></div> -->
             </div>
 
         </div>
@@ -558,7 +574,7 @@ function toggleMobileSub(el) {
             &copy; <span>Elsafy Center</span> كل الحقوق محفوظة.
         </p>
         <p class="made_by">
-            Developed by 
+            made by 
             <a href="Reem.html" target="_blank">
                 Eng / Reem Mohsen
             </a>

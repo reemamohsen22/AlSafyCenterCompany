@@ -1,51 +1,159 @@
+// fetch("products.json")
+
+// .then(res => res.json())
+// .then(data => {
+// console.log(data);
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const container = document.getElementById("fridge_products");
+
+//     function renderProduct(product){
+//         const isInCart = cart.some(item => item.id === product.id);
+
+//         container.innerHTM+= `
+//         <div class="product" data-id="${product.id}">
+//             <div class="img_product">
+//                 <a href="product.html?id=${product.id}">
+//                     <img src="${product.img}" alt="${product.name}">
+//                 </a>
+//             </div>
+
+//             <p class="name_product">${product.name}</p>
+
+//             <div class="price">
+//                 <span>EGP ${product.price}</span>
+//             </div>
+
+//             <div class="icons">
+//                 <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
+//                     <i class="fa-solid fa-cart-shopping"></i>
+//                     ${isInCart ? 'تمت الإضافة' : 'أضف للسلة'}
+//                 </span>
+
+
+//             <span class="icon_product fav_btn" data-id="${product.id}">
+//             <i class="fa-regular fa-heart"></i>
+//             </span>
+
+
+//             </div>
+//         </div>
+//         `;
+//     }
+   
+//     const fridges = data.filter(p => p.catetory === "airCon");
+//     const small_ = document.getElementById("mobiles");
+
+//     fridges.forEach(product => renderProduct(product));
+
+// syncFavouriteIcons();
+// updateFavouriteCount();
+
+// });
+
+///////////////////////
+
+
 fetch("products.json")
-
-.then(res => res.json())
+.then(response => response.json())
 .then(data => {
-console.log(data);
+    console.log(data);
+    products = data; 
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const container = document.getElementById("fridge_products");
 
-    function renderProduct(product){
-        const isInCart = cart.some(item => item.id === product.id);
+    const swiper_elctronics = document.getElementById("swiper_elctronics");
+
+
+    function renderProduct(container, product) {
+        const isInCart = cart.some(cartItem => cartItem.id === product.id);
+        const old_price_Pargrahp = product.old_price ? `<p class="old_price">EGP ${product.old_price}</p>` : "";
+        const percent_disc_div = product.old_price ? `<span class="sale_present">%${Math.floor((product.old_price - product.price) / product.old_price * 100)}</span>` : "";
 
         container.innerHTML += `
-        <div class="product" data-id="${product.id}">
-            <div class="img_product">
-                <a href="product.html?id=${product.id}">
-                    <img src="${product.img}" alt="${product.name}">
-                </a>
-            </div>
+            <div class="swiper-slide product" data-id="${product.id}">
+                ${percent_disc_div}
+                <div class="img_product">
+                    <a href="#" class="view-details" data-id="${product.id}">
+                        <img src="${product.img}" alt="${product.name}" class="product-img">
+                    </a>
+                </div>
 
-            <p class="name_product">${product.name}</p>
+                <div class="stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
 
-            <div class="price">
-                <span>EGP ${product.price}</span>
-            </div>
+                <p class="name_product">
+                    <a href="#" class="view-details" data-id="${product.id}">${product.name}</a>
+                </p>
 
-            <div class="icons">
-                <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    ${isInCart ? 'تمت الإضافة' : 'أضف للسلة'}
-                </span>
+                <div class="price">
+                    <p><span>EGP ${product.price}</span></p>
+                    ${old_price_Pargrahp}
+                </div>
 
-
+                <div class="icons">
+                    <span class="btn_add_cart ${isInCart ? 'active' : ''}" data-id="${product.id}">
+                        <i class="fa-solid fa-cart-shopping"></i> ${isInCart ? 'تمت الإضافة' : 'إضافة إلي السلة'}
+                    </span>
             <span class="icon_product fav_btn" data-id="${product.id}">
             <i class="fa-regular fa-heart"></i>
             </span>
-
-
+                </div>
             </div>
-        </div>
         `;
     }
+
    
-    const fridges = data.filter(p => p.catetory === "airCon");
-    const small_ = document.getElementById("mobiles");
+    const urlParams = new URLSearchParams(window.location.search);
+    const filter = urlParams.get('filter'); 
 
-    fridges.forEach(product => renderProduct(product));
-
+   
+    data.forEach(product => {
+        if (!filter || filter === "all") {
+          
+            if (product.catetory === "airCon") renderProduct(swiper_elctronics, product);
+        } else {
+            if (product.catetory === filter) {
+                if (filter === "airCon") renderProduct(swiper_elctronics, product);
+            }
+        }
+    }
+);
 syncFavouriteIcons();
 updateFavouriteCount();
 
+    const modalHTML = `
+        <div id="productModal" class="product-modal" style="display:none;">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <img id="modalImg" src="" alt="">
+                <h2 id="modalName"></h2>
+                <p id="modalPrice"></p>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    const modal = document.getElementById("productModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalName = document.getElementById("modalName");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalDesc = document.getElementById("modalDesc");
+
+    document.addEventListener("click", (e) => {
+        const target = e.target.closest(".view-details");
+        if (target) {
+            e.preventDefault();
+            const productId = target.dataset.id;
+            window.location.href = `product.html?id=${productId}`;
+        }
+    });
+
+    closeModal.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
 });

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
@@ -14,13 +14,13 @@ import { getFirestore, collection, addDoc } from "https://www.gstatic.com/fireba
 
 // عدلي بيانات Firebase الخاصة بمشروعك هنا
 const firebaseConfig = {
-  apiKey: "AIzaSyAxFPM68HMz-xuGIKvU3anRCwLlw-NlCSk",
-  authDomain: "alsafycentercompany.firebaseapp.com",
-  projectId: "alsafycentercompany",
-  storageBucket: "alsafycentercompany.firebasestorage.app",
-  messagingSenderId: "441640095981",
-  appId: "1:441640095981:web:4453b47cbae4019bfabce4",
-  measurementId: "G-P09D6PKMP2"
+  apiKey: "AIzaSyAfEQzxfnQwprQ3M6oFRRN8Kr6TUoamrL4",
+  authDomain: "alsafy-admin.firebaseapp.com",
+  projectId: "alsafy-admin",
+  storageBucket: "alsafy-admin.firebasestorage.app",
+  messagingSenderId: "503327475942",
+  appId: "1:503327475942:web:30ca804c3cd49cf88b9327",
+  measurementId: "G-5R6GSJB21B"
 };
 
 // تهيئة Firebase
@@ -40,6 +40,40 @@ async function uploadData() {
 }
 
 window.uploadData = uploadData;
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Products</title>
+</head>
+<body>
+
+<button onclick="uploadProducts()">Upload Products</button>
+
+<script>
+async function uploadProducts() {
+
+  const response = await fetch("products.json");
+  const products = await response.json();
+
+  for (let product of products) {
+
+    await fetch("https://69d9784826585bd92dd30cb6.mockapi.io/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(product)
+    });
+
+    console.log("Uploaded:", product.name);
+  }
+
+  alert("All products uploaded 🚀");
+}
 </script>
 
 </body>
