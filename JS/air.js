@@ -1,4 +1,4 @@
-// fetch("products.json")
+// fetch("https://api.alsafycenter.com/products")
 
 // .then(res => res.json())
 // .then(data => {
@@ -53,7 +53,7 @@
 ///////////////////////
 
 
-fetch("products.json")
+fetch("https://api.alsafycenter.com/products")
 .then(response => response.json())
 .then(data => {
     console.log(data);

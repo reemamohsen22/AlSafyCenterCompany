@@ -3,7 +3,7 @@
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-fetch("products.json")
+fetch("https://api.alsafycenter.com/products")
 
   .then(res => res.json())
   .then(data => {

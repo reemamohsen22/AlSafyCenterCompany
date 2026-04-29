@@ -18,7 +18,7 @@
 //     cart.classList.toggle("active")
 // }
 
-// fetch("products.json")
+// fetch("https://api.alsafycenter.com/products")
 
 // .then(response => response.json())
 // .then(data => {
@@ -279,7 +279,7 @@
 
 //     const productId = btn.dataset.id;
 
-// fetch("products.json")
+// fetch("https://api.alsafycenter.com/products")
 
 //     .then(res => res.json())
 //     .then(data => {

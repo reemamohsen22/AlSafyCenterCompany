@@ -1,161 +1,45 @@
-<!-- <!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>Admin Dashboard</title>
-<style>
-  body { font-family: Arial, sans-serif; padding: 20px; direction: rtl; }
-  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-  img { max-width: 50px; }
-  button { padding: 5px 10px; margin: 2px; cursor: pointer; }
-  #addForm { margin-top: 10px; border: 1px solid #ccc; padding: 10px; display: none; }
-  input { margin: 5px; padding: 5px; }
-</style>
-</head>
-<body>
+<!-- admin.html -->
+<script>
+const API = "https://api.yourstore.com";
+const TOKEN = localStorage.getItem("admin_token");
 
-<h2>لوحة التحكم - المنتجات</h2>
+// Login check
+if (!TOKEN) {
+  const entered = prompt("Enter admin password:");
+  // hash check or just compare to a known token
+  localStorage.setItem("admin_token", entered);
+  location.reload();
+}
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>الصورة</th>
-      <th>الاسم</th>
-      <th>السعر</th>
-      <th>الفئة</th>
-      <th>التحكم</th>
-    </tr>
-  </thead>
-  <tbody id="tableBody"></tbody>
-</table>
+async function apiCall(method, path, body) {
+  return fetch(API + path, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${TOKEN}`
+    },
+    body: body ? JSON.stringify(body) : undefined
+  });
+}
 
-<button onclick="toggleAddForm()">+ إضافة منتج</button>
+// Load products
+async function loadProducts() {
+  const res = await fetch(`${API}/products`);
+  const products = await res.json();
+  // render table with Edit / Delete buttons
+}
 
-<div id="addForm">
-  <input id="name" placeholder="اسم المنتج">
-  <input id="price" type="number" placeholder="السعر">
-  <input id="img" placeholder="رابط الصورة">
-  <input id="catetory" placeholder="الفئة">
-  <button onclick="addProduct()">حفظ</button>
-</div>
+// Create / Update
+async function saveProduct(product) {
+  const method = product.id ? "PUT" : "POST";
+  const path = product.id ? `/products/${product.id}` : "/products";
+  await apiCall(method, path, product);
+  loadProducts();
+}
 
-<script src="JS/admin.js"></script>
-</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<title>Admin Dashboard</title>
-<style>
-  body {
-    font-family: Arial;
-    padding: 20px;
-    background: #f5f5f5;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-  }
-
-  th {
-    background: #333;
-    color: #fff;
-  }
-
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-
-  img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-  }
-
-  button {
-    padding: 6px 10px;
-    margin: 2px;
-    border: none;
-    cursor: pointer;
-  }
-
-  button:hover {
-    opacity: 0.8;
-  }
-
-  #addForm {
-    display: none;
-    margin-top: 20px;
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-  }
-</style>
-</head>
-<body>
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="JS/admin.js"></script>
-<div id="loginBox">
-  <h2>Admin Login</h2>
-  <input type="text" id="username" placeholder="Email"><br><br>
-  <input type="password" id="password" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
-</div>
-
-<div id="adminContent" style="display:none;">
-<!-- 
-<div id="loginBox">
-  <h2>Admin Login</h2>
-  <input type="text" id="username" placeholder="Username"><br><br>
-  <input type="password" id="password" placeholder="Password"><br><br>
-  <button onclick="login()">Login</button>
-  <button onclick="logout()">Logout</button>
-  <p id="error" style="color:red;"></p>
-</div>
-
-<div id="adminContent" style="display:none;"> -->
-
-
-
-
-<h1>لوحة تحكم المنتجات</h1>
-
-<table id="productsTable">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>الاسم</th>
-      <th>السعر</th>
-      <th>الصورة</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<button onclick="toggleAddForm()">+ إضافة منتج</button>
-
-<div id="addForm">
-  <h3>إضافة منتج جديد</h3>
-  <input id="name" placeholder="اسم المنتج"><br>
-  <input id="price" type="number" placeholder="السعر"><br>
-  <input id="img" placeholder="رابط الصورة"><br>
-  <input id="catetory" placeholder="الفئة"><br>
-  <textarea id="desc" placeholder="الوصف"></textarea><br>
-  <button onclick="addProduct()">حفظ</button>
-  <!-- <button type="button" onclick="addProduct()">حفظ</button> -->
-</div>
-</div>
-<!-- <script src="JS/admin.js"></script> -->
-</body>
-</html>
+// Delete
+async function deleteProduct(id) {
+  await apiCall("DELETE", `/products/${id}`);
+  loadProducts();
+}
+</script>
