@@ -1,3 +1,329 @@
+// ===================== NAV & UI TOGGLES =====================
+
+let category_nav_list = document.querySelector(".category_nav_list");
+
+function Open_Categ_list() {
+    category_nav_list.classList.toggle("active");
+}
+
+let nav_links = document.querySelector(".nav_links");
+
+function open_Menu() {
+    const sidebar = document.querySelector('.mobile_sidebar');
+    if (sidebar) {
+        sidebar.classList.add('active');
+    } else if (nav_links) {
+        nav_links.classList.toggle("active");
+    }
+}
+
+var cart = document.querySelector('.cart');
+
+function open_close_cart() {
+    cart.classList.toggle("active");
+}
+
+function open_close_fav() {
+    document.querySelector(".favourites").classList.toggle("active");
+}
+
+
+// ===================== PRODUCTS =====================
+
+let products = []; // Global products array
+
+fetch("products.json")
+    .then(response => response.json())
+    .then(data => {
+        products = data;
+        console.log("Products loaded:", products);
+        syncButtonsWithCart();
+    })
+    .catch(error => {
+        console.error("Error loading products.json:", error);
+    });
+
+
+// ===================== CART LOGIC =====================
+
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existing = cart.find(item => item.id == product.id);
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function updateCart() {
+    const cartItemsContainer = document.getElementById("cart_items");
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const checkout_items = document.getElementById("checkout_items");
+
+    const items_input = document.getElementById("items");
+    const total_Price_input = document.getElementById("total_Price");
+    const count_Items_input = document.getElementById("count_Items");
+
+    const governorateSelect = document.getElementById("governorate");
+    const shippingSpan = document.getElementById("shipping_price");
+
+    if (checkout_items) {
+        checkout_items.innerHTML = "";
+        if (items_input) items_input.value = "";
+        if (total_Price_input) total_Price_input.value = "";
+        if (count_Items_input) count_Items_input.value = "";
+    }
+
+    let total_Price = 0;
+    let total_count = 0;
+
+    if (cartItemsContainer) cartItemsContainer.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        let total_Price_item = item.price * item.quantity;
+        total_Price += total_Price_item;
+        total_count += item.quantity;
+
+        if (checkout_items && items_input) {
+            items_input.value += `${item.name} --- price: ${total_Price_item} --- count: ${item.quantity}\n`;
+        }
+        if (count_Items_input) count_Items_input.value = total_count;
+
+        if (cartItemsContainer) {
+            cartItemsContainer.innerHTML += `
+                <div class="item_cart">
+                    <img src="${item.img}" alt="">
+                    <div class="content">
+                        <h4>${item.name}</h4>
+                        <p class="price_cart">EGP ${total_Price_item}</p>
+                        <div class="quantity_control">
+                            <button type="button" class="decrease_quantity" data-index="${index}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button type="button" class="Increase_quantity" data-index="${index}">+</button>
+                        </div>
+                    </div>
+                    <button class="delete_item" data-index="${index}">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        if (checkout_items) {
+            checkout_items.innerHTML += `
+                <div class="item_cart">
+                    <div class="image_name">
+                        <img src="${item.img}" alt="">
+                        <div class="content">
+                            <h4>${item.name}</h4>
+                            <p class="price_cart">${total_Price_item}</p>
+                            <div class="quantity_control">
+                                <button type="button" class="decrease_quantity" data-index="${index}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button type="button" class="Increase_quantity" data-index="${index}">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="delete_item" data-index="${index}">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `;
+        }
+    });
+
+    // Update totals in header/cart sidebar
+    const price_cart_total = document.querySelector('.price_cart_toral');
+    const count_item_cart = document.querySelector('.Count_item_cart');
+    const count_item_header = document.querySelector('.count_item_header');
+    const cartBadgeMobile = document.querySelector('.cart-badge-mobile');
+
+    if (price_cart_total) price_cart_total.innerHTML = `EGP ${total_Price}`;
+    if (count_item_cart) count_item_cart.innerHTML = total_count;
+    if (count_item_header) count_item_header.innerHTML = total_count;
+    if (cartBadgeMobile) cartBadgeMobile.innerHTML = total_count;
+
+    // Shipping cost
+    let shippingCost = 0;
+    if (governorateSelect) {
+        const value = governorateSelect.value;
+        if (value === "الفيوم") {
+            shippingCost = 50;
+        } else if (value) {
+            shippingCost = 70;
+        }
+    }
+
+    if (checkout_items) {
+        const subtotal_checkout = document.querySelector(".subtotal_checkout");
+        const total_checkout = document.querySelector(".total_checkout");
+
+        if (subtotal_checkout) subtotal_checkout.innerHTML = `EGP ${total_Price}`;
+        if (total_checkout) total_checkout.innerHTML = `EGP ${total_Price + shippingCost}`;
+        if (shippingSpan) shippingSpan.innerText = shippingCost;
+        if (total_Price_input) total_Price_input.value = total_Price + shippingCost;
+    }
+}
+
+function increaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity += 1;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function decreaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const removedProduct = cart.splice(index, 1)[0];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+    updateButtonsState(removedProduct.id);
+    document.dispatchEvent(new Event("cartUpdated"));
+}
+
+function updateButtonsState(productId) {
+    const allMatchingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
+    allMatchingButtons.forEach(button => {
+        button.classList.remove('active');
+        button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> أضف للسلة`;
+    });
+}
+
+// Sync add-to-cart buttons on page load based on existing cart
+function syncButtonsWithCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.forEach(item => {
+        const allBtns = document.querySelectorAll(`.btn_add_cart[data-id="${item.id}"]`);
+        allBtns.forEach(btn => {
+            btn.classList.add("active");
+            btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
+        });
+    });
+}
+
+
+// ===================== EVENT LISTENERS =====================
+
+// Add to cart click
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".btn_add_cart");
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (btn.classList.contains("active")) return;
+
+    const productId = btn.dataset.id;
+    const product = products.find(p => p.id == productId);
+
+    if (product) {
+        addToCart(product);
+
+        const allBtns = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
+        allBtns.forEach(b => {
+            b.classList.add("active");
+            b.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
+        });
+    } else {
+        console.warn("Product not found. Make sure products.json is loaded.");
+    }
+});
+
+// Quantity & delete controls
+document.addEventListener('click', function (e) {
+    if (e.target.closest('.Increase_quantity')) {
+        const index = e.target.closest('.Increase_quantity').dataset.index;
+        increaseQuantity(index);
+    }
+
+    if (e.target.closest('.decrease_quantity')) {
+        const index = e.target.closest('.decrease_quantity').dataset.index;
+        decreaseQuantity(index);
+    }
+
+    if (e.target.closest('.delete_item')) {
+        const index = e.target.closest('.delete_item').dataset.index;
+        removeFromCart(index);
+    }
+});
+
+// Governorate change → recalculate shipping
+const governorateSelect = document.getElementById("governorate");
+if (governorateSelect) {
+    governorateSelect.addEventListener("change", function () {
+        updateCart();
+    });
+}
+
+
+// ===================== FAVOURITES =====================
+
+let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+function updateFavouriteCount() {
+    const favCount = document.querySelector(".count_favourite");
+    if (favCount) favCount.innerText = favourites.length;
+}
+
+function syncFavouriteIcons() {
+    document.querySelectorAll(".fav_btn").forEach(btn => {
+        const id = btn.dataset.id;
+        const icon = btn.querySelector("i");
+        if (!icon) return;
+
+        if (favourites.includes(id)) {
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+            icon.style.color = "red";
+        } else {
+            icon.classList.add("fa-regular");
+            icon.classList.remove("fa-solid");
+            icon.style.color = "";
+        }
+    });
+}
+
+document.addEventListener("click", function (e) {
+    const favBtn = e.target.closest(".fav_btn");
+    if (!favBtn) return;
+
+    const productId = favBtn.dataset.id;
+
+    if (favourites.includes(productId)) {
+        favourites = favourites.filter(id => id !== productId);
+    } else {
+        favourites.push(productId);
+    }
+
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    updateFavouriteCount();
+    syncFavouriteIcons();
+});
+
+
+// ===================== INIT =====================
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateCart();
+    updateFavouriteCount();
+    syncFavouriteIcons();
+});
 // let category_nav_list = document.querySelector(".category_nav_list");
 
 // function Open_Categ_list(){
@@ -379,291 +705,291 @@
 // function open_close_fav(){
 //     document.querySelector(".favourites").classList.toggle("active");
 // }
-let products = []; // 🔥 مهم جدًا
-
-let category_nav_list = document.querySelector(".category_nav_list");
-
-function Open_Categ_list(){
-    category_nav_list.classList.toggle("active")
-}
-
-let nav_links = document.querySelector(".nav_links");
-
-function open_Menu() {
-    nav_links.classList.toggle("active")
-}
-
-var cart = document.querySelector('.cart');
-
-function open_close_cart() {
-    cart.classList.toggle("active")
-}
-
-// 🔥 تحميل المنتجات من API + تحويلها
-fetch("https://dummyjson.com/products")
-.then(response => response.json())
-.then(apiData => {
-
-    products = apiData.products.map(p => ({
-        id: p.id,
-        name: p.title,
-        img: p.thumbnail,
-        price: p.price,
-        category: p.category
-    }));
-
-    console.log(products);
-
-})
-.catch(error => {
-    console.error("Error loading products:", error);
-});
-
-function addToCart(product) {
-
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    cart.push({... product , quantity: 1});
-    localStorage.setItem('cart' , JSON.stringify(cart));
-
-    updateCart();
-}
-
-function updateCart() {
-    const cartItemsContainer = document.getElementById("cart_items");
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const checkout_items = document.getElementById("checkout_items");
-
-    const items_input = document.getElementById("items");
-    const total_Price_input = document.getElementById("total_Price");
-    const count_Items_input = document.getElementById("count_Items");
-
-    const governorateSelect = document.getElementById("governorate");
-    const shippingSpan = document.getElementById("shipping_price");
-
-    if (checkout_items) {
-        checkout_items.innerHTML = "";
-        items_input.value = "";
-        total_Price_input.value = "";
-        count_Items_input.value = "";
-    }
-
-    let total_Price = 0;
-    let total_count = 0;
-
-    cartItemsContainer.innerHTML = "";
-
-    cart.forEach((item, index) => {
-        let total_Price_item = item.price * item.quantity;
-        total_Price += total_Price_item;
-        total_count += item.quantity;
-
-        if (checkout_items) {
-            items_input.value += `${item.name} --- price: ${total_Price_item} --- count: ${item.quantity}\n`;
-            count_Items_input.value = total_count;
-        }
-
-        cartItemsContainer.innerHTML += `
-            <div class="item_cart">
-                <img src="${item.img}" alt="">
-                <div class="content">
-                    <h4>${item.name}</h4>
-                    <p class="price_cart">EGP ${total_Price_item}</p>
-                    <div class="quantity_control">
-                        <button type="button" class="decrease_quantity" data-index=${index}>-</button>
-                        <span class="quantity">${item.quantity}</span>
-                        <button type="button" class="Increase_quantity" data-index=${index}>+</button>
-                    </div>
-                </div>
-                <button class="delete_item" data-index="${index}">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            </div>
-        `;
-    });
-
-    const price_cart_total = document.querySelector('.price_cart_toral');
-    const count_item_cart = document.querySelector('.Count_item_cart');
-    const count_item_header = document.querySelector('.count_item_header');
+// let products = []; // 🔥 مهم جدًا
+
+// let category_nav_list = document.querySelector(".category_nav_list");
+
+// function Open_Categ_list(){
+//     category_nav_list.classList.toggle("active")
+// }
+
+// let nav_links = document.querySelector(".nav_links");
+
+// function open_Menu() {
+//     nav_links.classList.toggle("active")
+// }
+
+// var cart = document.querySelector('.cart');
+
+// function open_close_cart() {
+//     cart.classList.toggle("active")
+// }
+
+// // 🔥 تحميل المنتجات من API + تحويلها
+// fetch("https://dummyjson.com/products")
+// .then(response => response.json())
+// .then(apiData => {
+
+//     products = apiData.products.map(p => ({
+//         id: p.id,
+//         name: p.title,
+//         img: p.thumbnail,
+//         price: p.price,
+//         category: p.category
+//     }));
+
+//     console.log(products);
+
+// })
+// .catch(error => {
+//     console.error("Error loading products:", error);
+// });
+
+// function addToCart(product) {
+
+//     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//     cart.push({... product , quantity: 1});
+//     localStorage.setItem('cart' , JSON.stringify(cart));
+
+//     updateCart();
+// }
+
+// function updateCart() {
+//     const cartItemsContainer = document.getElementById("cart_items");
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const checkout_items = document.getElementById("checkout_items");
+
+//     const items_input = document.getElementById("items");
+//     const total_Price_input = document.getElementById("total_Price");
+//     const count_Items_input = document.getElementById("count_Items");
+
+//     const governorateSelect = document.getElementById("governorate");
+//     const shippingSpan = document.getElementById("shipping_price");
+
+//     if (checkout_items) {
+//         checkout_items.innerHTML = "";
+//         items_input.value = "";
+//         total_Price_input.value = "";
+//         count_Items_input.value = "";
+//     }
+
+//     let total_Price = 0;
+//     let total_count = 0;
+
+//     cartItemsContainer.innerHTML = "";
+
+//     cart.forEach((item, index) => {
+//         let total_Price_item = item.price * item.quantity;
+//         total_Price += total_Price_item;
+//         total_count += item.quantity;
+
+//         if (checkout_items) {
+//             items_input.value += `${item.name} --- price: ${total_Price_item} --- count: ${item.quantity}\n`;
+//             count_Items_input.value = total_count;
+//         }
+
+//         cartItemsContainer.innerHTML += `
+//             <div class="item_cart">
+//                 <img src="${item.img}" alt="">
+//                 <div class="content">
+//                     <h4>${item.name}</h4>
+//                     <p class="price_cart">EGP ${total_Price_item}</p>
+//                     <div class="quantity_control">
+//                         <button type="button" class="decrease_quantity" data-index=${index}>-</button>
+//                         <span class="quantity">${item.quantity}</span>
+//                         <button type="button" class="Increase_quantity" data-index=${index}>+</button>
+//                     </div>
+//                 </div>
+//                 <button class="delete_item" data-index="${index}">
+//                     <i class="fa-solid fa-trash-can"></i>
+//                 </button>
+//             </div>
+//         `;
+//     });
+
+//     const price_cart_total = document.querySelector('.price_cart_toral');
+//     const count_item_cart = document.querySelector('.Count_item_cart');
+//     const count_item_header = document.querySelector('.count_item_header');
 
-    price_cart_total.innerHTML = `EGP ${total_Price}`;
-    count_item_cart.innerHTML = total_count;
-    count_item_header.innerHTML = total_count;
-
-    const cartBadgeMobile = document.querySelector('.cart-badge-mobile');
-    if (cartBadgeMobile) {
-        cartBadgeMobile.innerHTML = total_count;
-    }
-
-    let shippingCost = 0;
-
-    if (governorateSelect) {
-        const value = governorateSelect.value;
+//     price_cart_total.innerHTML = `EGP ${total_Price}`;
+//     count_item_cart.innerHTML = total_count;
+//     count_item_header.innerHTML = total_count;
+
+//     const cartBadgeMobile = document.querySelector('.cart-badge-mobile');
+//     if (cartBadgeMobile) {
+//         cartBadgeMobile.innerHTML = total_count;
+//     }
+
+//     let shippingCost = 0;
+
+//     if (governorateSelect) {
+//         const value = governorateSelect.value;
 
-        if (value === "الفيوم") {
-            shippingCost = 50;
-        } else if (value) {
-            shippingCost = 70;
-        }
-    }
-
-    if (checkout_items) {
-        const subtotal_checkout = document.querySelector(".subtotal_checkout");
-        const total_checkout = document.querySelector(".total_checkout");
-
-        subtotal_checkout.innerHTML = `EGP ${total_Price}`;
-        total_checkout.innerHTML = `EGP ${total_Price + shippingCost}`;
-
-        if (shippingSpan) {
-            shippingSpan.innerText = shippingCost;
-        }
-
-        total_Price_input.value = total_Price + shippingCost;
-    }
-}
-
-const governorateSelect = document.getElementById("governorate");
-
-if (governorateSelect) {
-  governorateSelect.addEventListener("change", function () {
-    updateCart();
-  });
-}
-
-function increaseQuantity(index){
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart[index].quantity += 1;
-    localStorage.setItem('cart' , JSON.stringify(cart));
-    updateCart();
-}
-
-function decreaseQuantity(index){
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    if (cart[index].quantity > 1){
-        cart[index].quantity -= 1;
-    }
-
-    localStorage.setItem('cart' , JSON.stringify(cart));
-    updateCart();
-}
-
-function removeFromCart(index) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    const removeProduct = cart.splice(index , 1)[0];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-    updateButoonsState(removeProduct.id);
-
-    document.dispatchEvent(new Event("cartUpdated"));
-}
-
-function updateButoonsState(productId) {
-    const allMatchingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
-    allMatchingButtons.forEach(button =>{
-        button.classList.remove('active');
-        button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> أضف للسلة`;
-    });
-}
-
-updateCart();
-
-// 🔥 استخدام products بدل fetch تاني
-document.addEventListener("click", function(e) {
-    const btn = e.target.closest(".btn_add_cart");
-    if (!btn) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (btn.classList.contains("active")) return;
-
-    const productId = btn.dataset.id;
-    const product = products.find(p => p.id == productId);
-
-    if(product){
-        addToCart(product);
-
-        const allBtns = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
-        allBtns.forEach(b => {
-            b.classList.add("active");
-            b.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
-        });
-    }
-});
-
-function open_Menu() {
-  document.querySelector('.mobile_sidebar').classList.add('active');
-}
-
-document.addEventListener('click', function(e){
-
-    if(e.target.closest('.Increase_quantity')){
-        const index = e.target.closest('.Increase_quantity').dataset.index;
-        increaseQuantity(index);
-    }
-
-    if(e.target.closest('.decrease_quantity')){
-        const index = e.target.closest('.decrease_quantity').dataset.index;
-        decreaseQuantity(index);
-    }
-
-    if(e.target.closest('.delete_item')){
-        const index = e.target.closest('.delete_item').dataset.index;
-        removeFromCart(index);
-    }
-});
-
-// ❤️ Favourite
-let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-
-function updateFavouriteCount() {
-    const favCount = document.querySelector(".count_favourite");
-    if (favCount) {
-        favCount.innerText = favourites.length;
-    }
-}
-
-function syncFavouriteIcons() {
-    document.querySelectorAll(".fav_btn").forEach(btn => {
-        const id = btn.dataset.id;
-        const icon = btn.querySelector("i");
-
-        if (favourites.includes(id)) {
-            icon.classList.remove("fa-regular");
-            icon.classList.add("fa-solid");
-            icon.style.color = "red";
-        } else {
-            icon.classList.add("fa-regular");
-            icon.classList.remove("fa-solid");
-            icon.style.color = "";
-        }
-    });
-}
-
-document.addEventListener("click", function(e) {
-    const favBtn = e.target.closest(".fav_btn");
-    if (!favBtn) return;
-
-    const productId = favBtn.dataset.id;
-
-    if (favourites.includes(productId)) {
-        favourites = favourites.filter(id => id !== productId);
-    } else {
-        favourites.push(productId);
-    }
-
-    localStorage.setItem("favourites", JSON.stringify(favourites));
-    updateFavouriteCount();
-    syncFavouriteIcons();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    updateFavouriteCount();
-    syncFavouriteIcons();
-});
-
-function open_close_fav(){
-    document.querySelector(".favourites").classList.toggle("active");
-}
+//         if (value === "الفيوم") {
+//             shippingCost = 50;
+//         } else if (value) {
+//             shippingCost = 70;
+//         }
+//     }
+
+//     if (checkout_items) {
+//         const subtotal_checkout = document.querySelector(".subtotal_checkout");
+//         const total_checkout = document.querySelector(".total_checkout");
+
+//         subtotal_checkout.innerHTML = `EGP ${total_Price}`;
+//         total_checkout.innerHTML = `EGP ${total_Price + shippingCost}`;
+
+//         if (shippingSpan) {
+//             shippingSpan.innerText = shippingCost;
+//         }
+
+//         total_Price_input.value = total_Price + shippingCost;
+//     }
+// }
+
+// const governorateSelect = document.getElementById("governorate");
+
+// if (governorateSelect) {
+//   governorateSelect.addEventListener("change", function () {
+//     updateCart();
+//   });
+// }
+
+// function increaseQuantity(index){
+//     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     cart[index].quantity += 1;
+//     localStorage.setItem('cart' , JSON.stringify(cart));
+//     updateCart();
+// }
+
+// function decreaseQuantity(index){
+//     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//     if (cart[index].quantity > 1){
+//         cart[index].quantity -= 1;
+//     }
+
+//     localStorage.setItem('cart' , JSON.stringify(cart));
+//     updateCart();
+// }
+
+// function removeFromCart(index) {
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+//     const removeProduct = cart.splice(index , 1)[0];
+//     localStorage.setItem('cart', JSON.stringify(cart));
+//     updateCart();
+//     updateButoonsState(removeProduct.id);
+
+//     document.dispatchEvent(new Event("cartUpdated"));
+// }
+
+// function updateButoonsState(productId) {
+//     const allMatchingButtons = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
+//     allMatchingButtons.forEach(button =>{
+//         button.classList.remove('active');
+//         button.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> أضف للسلة`;
+//     });
+// }
+
+// updateCart();
+
+// // 🔥 استخدام products بدل fetch تاني
+// document.addEventListener("click", function(e) {
+//     const btn = e.target.closest(".btn_add_cart");
+//     if (!btn) return;
+
+//     e.preventDefault();
+//     e.stopPropagation();
+
+//     if (btn.classList.contains("active")) return;
+
+//     const productId = btn.dataset.id;
+//     const product = products.find(p => p.id == productId);
+
+//     if(product){
+//         addToCart(product);
+
+//         const allBtns = document.querySelectorAll(`.btn_add_cart[data-id="${productId}"]`);
+//         allBtns.forEach(b => {
+//             b.classList.add("active");
+//             b.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> تمت الإضافة`;
+//         });
+//     }
+// });
+
+// function open_Menu() {
+//   document.querySelector('.mobile_sidebar').classList.add('active');
+// }
+
+// document.addEventListener('click', function(e){
+
+//     if(e.target.closest('.Increase_quantity')){
+//         const index = e.target.closest('.Increase_quantity').dataset.index;
+//         increaseQuantity(index);
+//     }
+
+//     if(e.target.closest('.decrease_quantity')){
+//         const index = e.target.closest('.decrease_quantity').dataset.index;
+//         decreaseQuantity(index);
+//     }
+
+//     if(e.target.closest('.delete_item')){
+//         const index = e.target.closest('.delete_item').dataset.index;
+//         removeFromCart(index);
+//     }
+// });
+
+// // ❤️ Favourite
+// let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+// function updateFavouriteCount() {
+//     const favCount = document.querySelector(".count_favourite");
+//     if (favCount) {
+//         favCount.innerText = favourites.length;
+//     }
+// }
+
+// function syncFavouriteIcons() {
+//     document.querySelectorAll(".fav_btn").forEach(btn => {
+//         const id = btn.dataset.id;
+//         const icon = btn.querySelector("i");
+
+//         if (favourites.includes(id)) {
+//             icon.classList.remove("fa-regular");
+//             icon.classList.add("fa-solid");
+//             icon.style.color = "red";
+//         } else {
+//             icon.classList.add("fa-regular");
+//             icon.classList.remove("fa-solid");
+//             icon.style.color = "";
+//         }
+//     });
+// }
+
+// document.addEventListener("click", function(e) {
+//     const favBtn = e.target.closest(".fav_btn");
+//     if (!favBtn) return;
+
+//     const productId = favBtn.dataset.id;
+
+//     if (favourites.includes(productId)) {
+//         favourites = favourites.filter(id => id !== productId);
+//     } else {
+//         favourites.push(productId);
+//     }
+
+//     localStorage.setItem("favourites", JSON.stringify(favourites));
+//     updateFavouriteCount();
+//     syncFavouriteIcons();
+// });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     updateFavouriteCount();
+//     syncFavouriteIcons();
+// });
+
+// function open_close_fav(){
+//     document.querySelector(".favourites").classList.toggle("active");
+// }
