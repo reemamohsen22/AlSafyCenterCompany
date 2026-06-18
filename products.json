@@ -4,6 +4,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/IT_16Lfront_bluecopy2_610x.png?v=1781515729",
     "name": "أيس تانك ستايل 16 لتر - أزرق غامق",
     "price": 380,
+    "old_price": 435,
     "catetory": "filters",
     "desc": "مصنع من مواد آمنة صحيًا ١٠٠ %",
     "specifications": {
@@ -27,6 +28,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/IT_20Lfront_bluecopy2_1220x.png?v=1781515588",
     "name": "أيس تانك ستايل 20 لتر - أزرق غامق",
     "price": 550,
+    "old_price": 630,
     "catetory": "filters",
     "desc": "مصنع من مواد آمنة صحيًا ١٠٠ %",
     "specifications": {
@@ -50,6 +52,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/IT_45Lfront_redcopy_3664975d-4706-4953-b9dc-8f15ec42d20c_1220x.png?v=1718979419",
     "name": "أيس تانك 45 لتر سوبر كول - أحمر",
     "price": 960,
+    "old_price": 1105,
     "catetory": "filters",
     "desc": "مصنع من مواد آمنة صحيًا ١٠٠ %",
     "specifications": {
@@ -73,6 +76,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/IT_2_5Lright_redcopy_9677a1cd-348d-439b-8e2d-ad5c59b2d08d_1220x.png?v=1718978676",
     "name": "أيس تانك 2.5 لتر - أحمر",
     "price": 180,
+    "old_price": 200,
     "catetory": "filters",
     "desc": "مصنع من مواد آمنة صحيًا ١٠٠ %",
     "specifications": {
@@ -96,6 +100,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/1_9c030ca1-1c81-4ddb-8455-437e587eadb6_1220x.jpg?v=1770899167",
     "name": "زجاجة تانك سوبر كول ميني 650 مل",
     "price": 165,
+    "old_price": 215,
     "catetory": "filters",
     "desc": "جدار عازل للحفاظ علي البرودة حتى ٣ ساعات",
     "specifications": {
@@ -118,6 +123,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/1_702c7a7f-f119-4658-87b7-76640d669a2c_1220x.jpg?v=1770898494",
     "name": "زجاجة تانك مي 650 مل أستانلس ستيل - أحمر",
     "price": 475,
+    "old_price": 650,
     "catetory": "filters",
     "desc": "جدار عازل للحفاظ علي البرودة لمدة ١٢ ساعة",
     "specifications": {
@@ -144,6 +150,7 @@
     "img": "https://tankwaters.com/cdn/shop/files/1_17e7f834-4cb6-4c3c-8019-92ffcaac388f_1220x.jpg?v=1770899509",
     "name": "زجاجة تانك مي 650 مل أستانلس ستيل - أسود",
     "price": 475,
+    "old_price": 650,
     "catetory": "filters",
     "desc": "جدار عازل للحفاظ علي البرودة لمدة ١٢ ساعة",
     "specifications": {
