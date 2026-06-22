@@ -12,7 +12,8 @@ fetch("products.json")
     const swiper_Food = document.getElementById("swiper_Food");
     const swiper_stand_mixer = document.getElementById("swiper_stand_mixer");
     const swiper_tankk = document.getElementById("swiper_tankk");
-
+    const swiper_kettles = document.getElementById("swiper_kettles")
+    const swiper_juicer = document.getElementById("swiper_juicer")
 
     function renderProduct(container, product) {
         const isInCart = cart.some(cartItem => cartItem.id === product.id);
@@ -72,6 +73,8 @@ fetch("products.json")
             if (product.catetory === "Food") renderProduct(swiper_Food, product);
             if (product.catetory === "stand_mixer") renderProduct(swiper_stand_mixer, product);
             if (product.catetory === "ice_tankk") renderProduct(swiper_tankk, product);
+            if (product.catetory === "kettles") renderProduct(swiper_kettles, product);
+            if (product.catetory === "juicer") renderProduct(swiper_juicer, product);
         } else {
             if (product.catetory === filter) {
                 if (filter === "mixers") renderProduct(swiper_mixers, product);
@@ -81,6 +84,8 @@ fetch("products.json")
                 if (filter === "Food") renderProduct(swiper_Food, product);
                 if (filter === "stand_mixer") renderProduct(swiper_stand_mixer, product);
                 if (filter === "ice_tankk") renderProduct(swiper_tankk, product);
+                if (filter === "kettles") renderProduct(swiper_kettles, product);
+                if (filter === "juicer") renderProduct(swiper_juicer, product);
             }
         }
     }
