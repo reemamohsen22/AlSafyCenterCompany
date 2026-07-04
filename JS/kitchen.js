@@ -14,6 +14,8 @@ fetch("products.json")
     const swiper_tankk = document.getElementById("swiper_tankk");
     const swiper_kettles = document.getElementById("swiper_kettles")
     const swiper_juicer = document.getElementById("swiper_juicer")
+    const swiper_Sandwiches_maker = document.getElementById("swiper_Sandwiches_maker");
+    const swiper_coffee  = document.getElementById("swiper_coffee");
 
     function renderProduct(container, product) {
         const isInCart = cart.some(cartItem => cartItem.id === product.id);
@@ -75,6 +77,8 @@ fetch("products.json")
             if (product.catetory === "ice_tankk") renderProduct(swiper_tankk, product);
             if (product.catetory === "kettles") renderProduct(swiper_kettles, product);
             if (product.catetory === "juicer") renderProduct(swiper_juicer, product);
+            if (product.catetory === "Sandwiches_maker") renderProduct(swiper_Sandwiches_maker, product);
+            if (product.catetory === "coffee") renderProduct(swiper_coffee, product);
         } else {
             if (product.catetory === filter) {
                 if (filter === "mixers") renderProduct(swiper_mixers, product);
@@ -86,6 +90,8 @@ fetch("products.json")
                 if (filter === "ice_tankk") renderProduct(swiper_tankk, product);
                 if (filter === "kettles") renderProduct(swiper_kettles, product);
                 if (filter === "juicer") renderProduct(swiper_juicer, product);
+                if (filter === "Sandwiches_maker") renderProduct(swiper_Sandwiches_maker, product);
+                if (filter === "coffee") renderProduct(swiper_coffee, product);
             }
         }
     }
