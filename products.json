@@ -2144,7 +2144,7 @@
     "id": "61",
     "img": "img/product/53.png",
     "name": "مروحة تورنيدو ستاند 16 بوصة 4 ريش ريموت EFS-65",
-    "Price": 2579,
+    "price": 2579,
     "old_price": 2750,
     "catetory": "fan_stand",
     "images": [
@@ -9013,7 +9013,6 @@
         "ملعقة قياس مقدار الزيت",
         "بطاطس صحية مع ملعقة واحدة من الزيت"
       ],
-      "old_price": 5000,
       "sku": "قلا-J1RAL"
     },
     {
@@ -9738,7 +9737,7 @@
       "img": "https://sakrstore.com/web/image/product.product/26428/image_1024/%5B8809133200%5D%20%E2%80%AB%D8%B4%D9%81%D8%A7%D8%B7%20%D8%A8%D9%88%D8%AA%D8%A7%D8%AC%D8%A7%D8%B2%20%D8%A8%D9%84%D8%AA%20%D8%A7%D9%86%20%D8%A8%D9%8A%D9%83%D9%88%D8%8C%2090%20%D8%B3%D9%85%D8%8C%20%D8%A3%D8%B3%D9%88%D8%AF%20%D8%B2%D8%AC%D8%A7%D8%AC%D9%8A%20-%20HCA92640BHE%E2%80%AC?unique=a49fd3c",
       "name": "شفاط بوتاجاز بلت ان بيكو، 90 سم، أسود زجاجي - HCA92640BHE",
       "price": "15500",
-      "catetory": "gas",
+      "catetory": "shafat",
       "images": [
         "https://sakrstore.com/web/image/product.product/26428/image_1024/%5B8809133200%5D%20%E2%80%AB%D8%B4%D9%81%D8%A7%D8%B7%20%D8%A8%D9%88%D8%AA%D8%A7%D8%AC%D8%A7%D8%B2%20%D8%A8%D9%84%D8%AA%20%D8%A7%D9%86%20%D8%A8%D9%8A%D9%83%D9%88%D8%8C%2090%20%D8%B3%D9%85%D8%8C%20%D8%A3%D8%B3%D9%88%D8%AF%20%D8%B2%D8%AC%D8%A7%D8%AC%D9%8A%20-%20HCA92640BHE%E2%80%AC?unique=a49fd3c"
       ],
@@ -10978,7 +10977,7 @@
       "img": "https://www.elarabygroup.com/media/catalog/product/cache/9b5391a96f4990477897aa67499492d0/h/i/hitachi-washing-machine-10-kg-6-kg-dryer-inverter-grey-bd-d100yfvem-front.jpg",
       "name": "غسالة ملابس هيتاشي 10 كجم مجفف 6 كجم انفرتر رمادي BD-D100YFVEM",
       "price": "37795",
-      "catetory": "electronics",
+      "catetory": "washing",
       "images": [
         "https://www.elarabygroup.com/media/catalog/product/cache/9b5391a96f4990477897aa67499492d0/h/i/hitachi-washing-machine-10-kg-6-kg-dryer-inverter-grey-bd-d100yfvem-front.jpg"
       ],
@@ -11218,7 +11217,7 @@
     },
     {
       "id": "296",
-      "img": "https://dwecxxryy5p59.cloudfront.net/catalogs/b/1/e/d/b1edc0301c244b576c1a9a8c0b7336a2fbd5c9d3_hrf380tmsm.jpg",
+      "img": "img/product/at.png",
       "name": "ثلاجة بفريزر علوي هاير ، سعة 357 لتر ، نوفروست ، بانفرتر ، فضي - HRF-380TMSM",
       "price": "19999",
       "catetory": "electronics",
@@ -11684,7 +11683,7 @@
       "img": "https://unionaire.com/wp-content/uploads/magictoolbox_cache/cf3e6ec01aac7cb79461bcfe9d0d075e/3/6/36036/thumb900x900/2071971320/Artboard-1-1.png",
       "name": "بوتجاز غاز ماكس من يونيون اير امان كامل، 5 شعلات، ستانلس ستيل",
       "price": "13800",
-      "catetory": "washing",
+      "catetory": "gas",
       "images": [
         "https://unionaire.com/wp-content/uploads/magictoolbox_cache/cf3e6ec01aac7cb79461bcfe9d0d075e/3/6/36036/thumb900x900/2071971320/Artboard-1-1.png"
       ],

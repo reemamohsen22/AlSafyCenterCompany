@@ -62,7 +62,6 @@ fetch("products.json")
 
     const swiper_elctronics = document.getElementById("swiper_elctronics");
 
-
     function renderProduct(container, product) {
         const isInCart = cart.some(cartItem => cartItem.id === product.id);
         const old_price_Pargrahp = product.old_price ? `<p class="old_price">EGP ${product.old_price}</p>` : "";
